@@ -11,5 +11,6 @@
 .mint-viewer > h1 {
     font-family: 'Articulat.CF-V3-Heavy';
     font-size: 65px;
-    width: 50%;
+    width: max(350px, 50%);
+    text-align: center;
 }

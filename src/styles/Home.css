@@ -68,7 +68,7 @@ scrollbar-width: none;  /* Firefox */
 .roadmap {
     width: 100%;
     margin-bottom: 200px;
-    margin-top: 300px;
+    margin-top: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -98,7 +98,7 @@ scrollbar-width: none;  /* Firefox */
 }
 
 .roadmap-img {
-    width: max(20vw, 175px);
+    width: max(20vw, 150px);
     border-radius: 3px;
 }
 
@@ -169,8 +169,8 @@ scrollbar-width: none;  /* Firefox */
 
 @media only screen and (max-width: 1080px) {
     .right {
-        width: 95vw;
-        min-width: 400px;
+        width: 40vw;
+        height: 100vh;
         margin-top: 0px;
         flex-basis: 100%;
         margin-top: 100px;
@@ -178,15 +178,15 @@ scrollbar-width: none;  /* Firefox */
 
     .home {
         height: 100%;
+        width: 100%;
     }
 
     .offset {margin: 0px;}
 
     .left {
-        width: 95vw;
+        width: 90vw;
         font-size: calc(min(2rem, 60px, 5em));
     }
-
     .roadmap-panel {
         width: 100%;
         display: flex;
