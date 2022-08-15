@@ -32,7 +32,7 @@
 }
 
 .filter-box {
-    width: max(320px, 70%);
+    width: 300px;
     margin-top: 50px;
     overflow: auto;
     height: 83vh;
@@ -104,7 +104,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     width: max(50vw, 350px);
-    height: max(50vh, 500px);
+    height: max(50vh, 600px);
     background-color: rgba(9,24,51,0.95);
     z-index: 2;
     border-radius: 5px;
@@ -160,6 +160,19 @@
     text-align: left;
     width: 80%;
     margin-bottom: -10px;
+}
+
+.modal-header {
+    flex-basis: 100%;
+    opacity: 1;
+    transition: opacity 200ms;
+    transition-timing-function: ease-out;
+}
+
+.modal-header:hover {
+    opacity: 0.5;
+    transition: opacity 200ms;
+    transition-timing-function: ease-in;
 }
 
 
@@ -225,8 +238,18 @@
         display: flex;
         flex-direction: column;
         align-items:center;
-        height: 45vh;
+        height: 60vh;
         margin-top: 3vh;
+        margin-bottom: 5vh;
+    }
+
+    .modal {
+        top: 100%;
+        height: 800px;
+    }
+
+    .filter-viewer > h1{
+        font-size: 40px;
     }
 
     .modal-image-item {
@@ -251,11 +274,11 @@
     
     
     .modal-right > h1 {
-        text-align: left;
+        text-align: center;
         width: 100%;
         margin-bottom: 40px;
         font-family: 'Articulat.CF-V3-Heavy';
-        font-size: 60px;
+        font-size: 30px;
     }
     
     

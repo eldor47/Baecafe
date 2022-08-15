@@ -81,6 +81,7 @@ scrollbar-width: none;  /* Firefox */
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     column-gap: 50px;
 }
 .roadmap-desc {
@@ -98,7 +99,7 @@ scrollbar-width: none;  /* Firefox */
 }
 
 .roadmap-img {
-    width: 20vw;
+    width: max(20vw, 250px);
     border-radius: 3px;
 }
 

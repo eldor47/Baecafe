@@ -1,0 +1,60 @@
+.time-holder {
+    width: 75vw;
+    max-width: 900px;
+    min-width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.soon {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.presale {
+    font-family: 'Articulat.CF-V3-Heavy';
+    margin-top: 20px;
+    margin-bottom: -30px;
+}
+
+
+.time-top {
+    font-family: 'Articulat.CF-V3-Heavy';
+    text-align: center;
+    width: 74px;
+    font-size: 35px;
+    font-weight: 400;
+    border-radius: 8px;
+}
+
+.mintText {
+    transition: 0.5s;
+}
+
+
+
+.disabled:hover{
+    opacity: 100;
+}
+
+.time-bottom {
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.mintButton {
+    margin-top: 20px;
+    color: rgb(223, 248, 242);
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.disabled {
+    margin-top: 20px;
+    background-color: rgb(49, 49, 49);
+    color: rgb(223, 248, 242);
+    font-size: 18px;
+    font-weight: 300;
+}

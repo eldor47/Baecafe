@@ -130,57 +130,6 @@
     width: 60px;
 }
 
-.modal {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: max(50vw, 350px);
-    height: max(50vh, 500px);
-    background-color: rgba(9,24,51,0.95);
-    z-index: 2;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    padding: 30px;
-}
-
-.modal-left {
-    width: 50%;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.modal-right {
-    height: 100%;
-    width: 40%;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.modal-right > p {
-    text-align: left;
-    width: 80%;
-    margin-bottom: -10px;
-}
-
-.modal-right > h1 {
-    text-align: left;
-    width: 80%;
-    margin-bottom: 20px;
-    font-family: 'Articulat.CF-V3-Heavy';
-    font-size: 50px;
-}
-
-
 .attribute {
     width: 80%;
     display: flex;
@@ -247,14 +196,6 @@
         text-align: left;
         width: 80%;
         margin-bottom: -10px;
-    }
-    
-    .modal-right > h1 {
-        text-align: left;
-        width: 100%;
-        margin-bottom: 40px;
-        font-family: 'Articulat.CF-V3-Heavy';
-        font-size: 60px;
     }
     
   }

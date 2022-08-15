@@ -56,7 +56,7 @@ function Header({ connect, account }) {
       <div hidden={open} className="header-item" onClick={() => handleOnClick('gallery')}> Gallery </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('stake')}> Staking </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('marketplace')}> Marketplace </div>
-      <div hidden={open} className="button"> SEASON 2.5 </div>
+      <div hidden={open} className="button" onClick={() => handleOnClick('mint')}> SEASON 2.5 </div>
       {account == "" ? (
         <button hidden={open} onClick={connect} className="button-connect">
           Connect
@@ -68,6 +68,8 @@ function Header({ connect, account }) {
         <a hidden={open} href="https://twitter.com/baebaecafe"><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/twitter.png"/></a>
         <a hidden={open} href="https://discord.gg/baecafe"><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/discord.png"/></a>
         <a hidden={open} href="https://opensea.io/collection/baecafe-s2"><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/opensea.png"/></a>
+        <a hidden={open} href="https://www.instagram.com/baecafe.xyz/"><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/instagram.png"/></a>
+        <a hidden={open} href="https://medium.com/@baecafe"><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/medium.png"/></a>
       </div>
     </div>
   );

@@ -140,6 +140,7 @@ function Gallery({ connect, account }) {
         <div className="modal-bg" data-aos="fade-in">
           <OutsideClickHandler onOutsideClick={() => { handleClose(false) }}>
             <div className="modal">
+              <div className="modal-header" onClick={() => {handleClose(false)}}>X</div>
               <div className="modal-left">
                 <img className='modal-image-item' src={selectedNft.external_url} alt={selectedNft.name}></img>
               </div>

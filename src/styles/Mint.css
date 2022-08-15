@@ -1,0 +1,15 @@
+.mint-viewer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    text-align: center;
+    height: 93vh;
+}
+
+.mint-viewer > h1 {
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: 65px;
+    width: 50%;
+}

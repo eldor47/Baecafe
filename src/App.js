@@ -12,6 +12,7 @@ import erc721aAbi from "./abi/erc721a.json";
 
 import React from 'react';
 import Marketplace from "./components/Marketplace";
+import Mint from "./components/Mint";
 
 const contractInfo = [
   {address: '0x951e4297561e9abef6e5b4b2f78696ed8c552fd0', name: 'Bae Cafe', type: 'erc721'},
@@ -62,6 +63,7 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/stake" element={<Stake account={account} contracts={contracts}/>} />
           <Route path="/marketplace" element={<Marketplace account={account} contracts={contracts}/>} />
+          <Route path="/mint" element={<Mint account={account}/>} />
         </Routes>
     </Router>
   );
