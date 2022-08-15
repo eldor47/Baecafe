@@ -43,7 +43,7 @@ function Gallery({ connect, account }) {
       setView(response.data.metadata.slice(0, imageCount))
     });
 
-    url = process.env.REACT_APP_BASE_URI + '/gallery/dropdowns';
+    url = process.env.REACT_APP_BASE_URI + '/dropdowns';
     axios.post(url, { season: season }).then((response) => {
       setDropdownData(response.data.dropdowns)
 
