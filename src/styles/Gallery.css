@@ -1,0 +1,263 @@
+.image-viewer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    row-gap: 40px;
+    height: 83vh;
+    overflow: auto;
+    z-index: 1;
+    flex-basis: 59%;
+
+    margin-top: 10vh;
+
+    scroll-behavior: smooth;
+}
+
+.filter-viewer {
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    height: 86vh;
+    margin-top: 7vh;
+}
+
+.filter-viewer > h1 {
+    text-align: left;
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: 65px;
+    width: 50%;
+}
+
+.filter-box {
+    width: max(320px, 70%);
+    margin-top: 50px;
+    overflow: auto;
+    height: 83vh;
+}
+
+.filter-item {
+    border-bottom: 1px solid white;
+    height: 30px;
+    width: 100%;
+    text-align: start;
+    vertical-align: bottom;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 16px;
+    font-size: 1rem;
+}
+
+.expanded {
+    border-bottom: none;
+    font-size: 14px;
+}
+
+.loadingView {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 92vh;
+}
+
+.pink {
+    color: #ea00d9;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.image-viewer::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-box::-webkit-scrollbar {
+    display: none;
+}
+.image-item {
+    width: 200px;
+    border-radius: 3px;
+}
+
+.image-text {
+    text-align: center;
+}
+
+.image-holder {
+    opacity: 1;
+    transition: opacity 200ms;
+    transition-timing-function: ease-out;
+    z-index: 1;
+}
+
+.image-holder:hover {
+    opacity: 0.75;
+    transition: opacity 200ms;
+    transition-timing-function: ease-in;
+    cursor: pointer;
+}
+
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: max(50vw, 350px);
+    height: max(50vh, 500px);
+    background-color: rgba(9,24,51,0.95);
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+}
+
+.modal-left {
+    width: 50%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-right {
+    height: 100%;
+    width: 40%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-right > p {
+    text-align: left;
+    width: 80%;
+    margin-bottom: -10px;
+}
+
+.modal-right > h1 {
+    text-align: left;
+    width: 80%;
+    margin-bottom: 20px;
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: 50px;
+}
+
+.modal-right-header {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    width: 77%;
+}
+
+.modal-right-header > p {
+    text-align: left;
+    width: 80%;
+    margin-bottom: -10px;
+}
+
+
+.attribute {
+    width: 80%;
+    display: flex;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.attribute-left {
+    flex-basis: 40%;
+    padding: 0.5%;
+}
+
+.attribute-right {
+    flex-basis: 58%;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.5%;
+}
+
+.modal-image-item {
+    height: 25vw;
+    border-radius: 5px;
+}
+
+.modal-bg {
+    background-color: rgba(0,0,0,0.4);
+    position:absolute;
+    top:0px;
+    right:0px;
+    bottom:0px;
+    left:0px;
+    z-index: 2;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+@media only screen and (max-width: 1080px) {
+    .image-viewer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        column-gap: 20px;
+        row-gap: 40px;
+        height: 83vh;
+        overflow: auto;
+        z-index: 1;
+        flex-basis: 100%;
+    
+        margin-top: 0px;
+    
+        scroll-behavior: smooth;
+    }
+    
+    .filter-viewer {
+        flex-basis: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+        height: 45vh;
+        margin-top: 3vh;
+    }
+
+    .modal-image-item {
+        height: 16em;
+        border-radius: 5px;
+    }
+
+    .modal-left {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+    }
+
+    .modal-right {
+        width: 100%;
+    
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    
+    .modal-right > h1 {
+        text-align: left;
+        width: 100%;
+        margin-bottom: 40px;
+        font-family: 'Articulat.CF-V3-Heavy';
+        font-size: 60px;
+    }
+    
+    
+  }
+

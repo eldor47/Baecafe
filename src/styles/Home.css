@@ -1,0 +1,189 @@
+.home {
+ width: 93vw;
+ height: 110vh;
+ margin-bottom: -20vh;
+ border: 10px solid transparent;
+ display: flex;
+ justify-content: center;
+ flex-wrap: wrap;
+ flex-direction: row;
+ overflow-y: scroll;
+ scroll-behavior: smooth;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.home::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+.home {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+
+.left {
+    width: 35vw;
+    height: 35vw;
+    border: 10px solid transparent;
+    min-width: 400px;
+
+    font-size: calc(min(2.5rem, 60px, 5em));
+    font-family: 'Articulat.CF-V3-Heavy';
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding-top: 10%;
+}
+
+.offset {
+    margin-left: 150px;
+    color: #ea00d9;
+  }
+
+.left > p {
+    font-family: 'Articulat.CF-V3';
+    font-size: 16px;
+    width: 350px;
+    font-size: 18px;
+}
+
+.right {
+    width: 40vw;
+    height: 100vh;
+    min-height: 350px;
+    border: 10px solid transparent;
+    min-width: 400px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../image/home/ic-home-2-trim.png');
+    display: block;
+    align-self: center;
+}
+
+.roadmap {
+    width: 100%;
+    margin-bottom: 200px;
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 50px;
+}
+
+.roadmap-panel {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 50px;
+}
+.roadmap-desc {
+    width: max(350px, 40%);
+    padding: 30px;
+}
+.roadmap-desc > h1 {
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: max(20px, 3.75em);
+    color: #ea00d9;
+}
+
+.roadmap-desc > p {
+    font-size: max(16px, 1.2em);
+}
+
+.roadmap-img {
+    width: 20vw;
+    border-radius: 3px;
+}
+
+.team {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 200px;
+}
+
+.team-holder {
+    margin-top: 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    column-gap: 50px;
+    margin-bottom: 200px;
+    flex-wrap: wrap;
+    row-gap: 30px;
+}
+
+.team-item {
+    height: 400px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.twitter-icon {
+    width: 37px;
+}
+
+.team-img {
+    width: 100%;
+    border-radius: 2px;
+}
+
+.team-img {
+    width: 100%;
+    border-radius: 2px;
+
+    border: none;
+    transition: border 500ms;
+    transition-timing-function: ease-out;
+}
+
+.team-img:hover {
+    width: 100%;
+    border-radius: 2px;
+
+    border: 1px solid white;
+    transition: border 500ms;
+    transition-timing-function: ease-in;
+}
+
+
+.team > h1 {
+    width: 100%;
+    text-align: center;
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: max(20px, 3.75em);
+}
+
+@media only screen and (max-width: 1080px) {
+    .right {
+        width: 95vw;
+        min-width: 400px;
+        margin-top: 0px;
+        flex-basis: 100%;
+        margin-top: 100px;
+    }
+
+    .home {
+        height: 100%;
+    }
+
+    .offset {margin: 0px;}
+
+    .left {
+        width: 95vw;
+        font-size: calc(min(2rem, 60px, 5em));
+    }
+  }
