@@ -25,7 +25,7 @@ function Home() {
                             <div className="roadmap-desc">
                                 <h1>PHASE 1</h1>
                                 <p>It started simply with an image from the mind of our founding artist 
-                                    @sawawse
+                                <a href="https://twitter.com/sawawse"> @sawawse</a>
                                     -- bikini waifus on the beach serving drinks and living the bae life.  
                                     We launched 1000 Baes onto Ethereum to begin the journey.</p>
                             </div>
@@ -36,14 +36,14 @@ function Home() {
                             <div className="roadmap-desc">
                                 <h1>PHASE 2</h1>
                                 <p>Soon the Cafe was invaded by an alien threat and the Baes were forced to defend.  Meka suits were designed by 
-                                @sayuki_0123
+                                <a href="https://twitter.com/sayuki_0123"> @sayuki_0123 </a>
                                 for this purpose and 2222 MEKABAES were launched.  Season 2 is cc0, and we encourage artists to use our images for their benefit.</p>
                             </div>
                         </div>
                         <div className="roadmap-panel">
                             <div className="roadmap-desc">
                                 <h1>PHASE 3</h1>
-                                <p>The next Phase to launch will be staking on Aug 15th. 
+                                <p>The next Phase to launch will be staking on Aug 18th. 
                                     Holders will be able to stake their season 1 and 2 NFT to generate $BAE, a community currency to be used for purchasing art commissions, exclusive WLs, merch, and more! 
                                     Holders can get staking multipliers by voting monthly</p>
                             </div>
@@ -53,14 +53,14 @@ function Home() {
                             <img className="roadmap-img" src="./image/hanapixel.gif"  />
                             <div className="roadmap-desc">
                                 <h1>PHASE 4</h1>
-                                <p>On Aug 18th, we will launch 10,000 PIXELBAES onto Eth by @ChinpongR. 
+                                <p>On Aug 18th, we will launch 10,000 PIXELBAES onto Eth by <a href="https://twitter.com/ChinpongR">@ChinpongR</a>. 
                                     Over 200 traits mixed from seasons 1 and 2 are used. They are individually hand outlined with love.</p>
                             </div>
                         </div>
                         <div className="roadmap-panel">
                             <div className="roadmap-desc">
                                 <h1>PHASE 5</h1>
-                                <p>After PIXELBAES settle in, we will launch the marketplace.  This is where stakers can spend their $BAE.  Offerings will include Artist Commissions, Exclusive WLS, Raffle entries, Merch, and more!</p>
+                                <p>After PIXELBAES settle in, we will launch the marketplace. This is where stakers can spend their $BAE. Offerings will include Artist Commissions, Exclusive WLS, Raffle entries, Merch, and more!</p>
                             </div>
                             <img className="roadmap-img" src="./image/bae_shop.jpg"  />
                         </div>
@@ -74,7 +74,7 @@ function Home() {
                         <div className="roadmap-panel">
                             <div className="roadmap-desc">
                                 <h1>PHASE 7</h1>
-                                <p>Finally, the Cafe will be made real with real land and real Boba tea!   Something like this is what we have in mind.  Holders will be invited for perk filled weekend getaways! 
+                                <p>Finally, the Cafe will be made real with real land and real Boba tea! Something like this is what we have in mind.  Holders will be invited for perk filled weekend getaways! 
                                     We can't wait to see everyone there!!</p>
                             </div>
                             <img className="roadmap-img" src="./image/baereal.png"  />

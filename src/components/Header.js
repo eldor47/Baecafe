@@ -44,7 +44,7 @@ function Header({ connect, account }) {
   }
 
   const toggle = () => {
-    if(getWindowDimensions().width < 800) {
+    if(getWindowDimensions().width < 1080) {
       setOpen(!open)
     }
   }
