@@ -92,22 +92,20 @@ function Gallery({ connect, account }) {
   }
 
   const getFilterData = () => {
-    var newData = data.metadata?.filter(item => {
-      var fil = false
-
-      var keys = Object.keys(checked)
-      if(keys.length === 0) {
-        return true
-      }
-
-      keys.forEach(key => {
+    var keys = Object.keys(checked)
+    console.log(checked)
+    var newData = data.metadata
+    for(var key of keys) {
+      newData = newData.filter(item => {
+        var fil = false
         var value = item.attributes.find(({ trait_type }) => trait_type === key)?.value
         if(checked[key].includes(value)){
           fil = true
         }
+
+        return fil
       })
-      return fil
-    }).slice(0, imageCount)
+    }
     return newData
   }
 
@@ -199,6 +197,7 @@ function Gallery({ connect, account }) {
                 <p className='image-text'>{nft.name}</p>
               </div>
             ))}
+            <h1 hidden={view.length !== 0}>No results found.</h1>
           </div>
         </div>
       )}

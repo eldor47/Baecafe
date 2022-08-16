@@ -164,6 +164,7 @@
 
 .modal-header {
     flex-basis: 100%;
+    cursor: pointer;
     opacity: 1;
     transition: opacity 200ms;
     transition-timing-function: ease-out;
