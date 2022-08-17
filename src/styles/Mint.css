@@ -10,7 +10,8 @@
 
 .image-mint {
     width: 300px;
-    margin-top: -100px;
+    margin-top: -80px;
+    z-index: 0;
 }
 
 .mint-viewer > h1 {
@@ -30,6 +31,7 @@
     margin: 10px;
     text-align: center;
     cursor: pointer;
+    z-index: 1;
 }
 
 .error {
