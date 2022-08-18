@@ -54,10 +54,12 @@ function App() {
 
   useEffect(() => {
     connect();
-    window.ethereum.on('accountsChanged', function (accounts) {
-      // Time to reload your interface with accounts[0]!
-      setAccount(accounts[0])
-    })
+    if(window.ethereum) {
+      window.ethereum.on('accountsChanged', function (accounts) {
+        // Time to reload your interface with accounts[0]!
+        setAccount(accounts[0])
+      })
+    }
   }, []);
   return (
     <Router>
