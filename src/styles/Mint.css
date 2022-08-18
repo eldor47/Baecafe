@@ -45,6 +45,9 @@
     height: 100px;
 }
 
+.status {
+    z-index: 2;
+}
 @media only screen and (max-width: 1080px) {
     .mint-viewer > h1 {
         font-family: 'Articulat.CF-V3-Heavy';
