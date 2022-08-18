@@ -236,11 +236,12 @@ function Mint({ account }) {
             <h1 className="pink">PIXELBAES</h1>
             <Timer></Timer>
             <h2 hidden={pausedStates.presale && pausedStates.public}>{supply.totalSupply} / {supply.maxSupply}</h2>
-            <button className="mint-button" hidden={pausedStates.presale} onClick={handleSign}>MINT PRESALE</button>
-            <button className="mint-button" hidden={pausedStates.public} onClick={mintPublic}>MINT PUBLIC</button>
+            <button className="mint-button" hidden={pausedStates.presale && (supply.totalSupply / supply.maxSupply !== 1)} onClick={handleSign}>MINT PRESALE</button>
+            <button className="mint-button" hidden={pausedStates.public && (supply.totalSupply / supply.maxSupply !== 1)} onClick={mintPublic}>MINT PUBLIC</button>
             <div className="statusText">
               <p className="error">{error}</p>
               <p className="status">{status}</p>
+              <p className="status" hidden={supply.totalSupply / supply.maxSupply !== 1}>Sale has concluded. Check us out on <a href="https://opensea.io/collection/pixelbaes">Opensea</a></p>
             </div>
             <img className='image-mint' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/pixel.gif"></img>
           </div>
