@@ -129,7 +129,7 @@ function Mint({ account }) {
     try {
       var mintTx = await contract.mint()
       
-      setStatus('Your tokens are on the way!')
+      setStatus('Your token is on the way!')
       await mintTx.wait()
       setStatus('Tokens successfully minted. Reveal coming soon.')
       var totals = await getMintedNum()
