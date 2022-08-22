@@ -15,13 +15,14 @@ function Gallery({ connect, account }) {
   const [dropdownData, setDropdownData] = React.useState([]);
   const [dropdownStatus, setDropdownStatus] = React.useState([]);
   const [view, setView] = React.useState([]);
+  const [page, setPage] = React.useState(1);
 
   const [modalOpen, openModal] = React.useState(false);
   const [selectedNft, setNft] = React.useState(false);
   const [checked, setChecked] = React.useState({}); 
   const [season, setSeason] = React.useState('s2'); 
 
-  const [imageCount, setImageCount] = React.useState(30);
+  const [imageCount, setImageCount] = React.useState(100);
 
   const handleAddClick = (selectedNft) => {
     openModal(true);
@@ -37,10 +38,17 @@ function Gallery({ connect, account }) {
 
   React.useEffect(() => {
     let url = process.env.REACT_APP_BASE_URI + '/gallery';
-    axios.post(url, { season: season }).then((response) => {
+    let seasons = {
+      's1': 1000,
+      's2': 2222,
+      's2.5': 10000
+    }
+    
+    axios.post(url, { season: season, page: 1, batchSize: 100 }).then((response) => {
       // Set data and viewable data for scrollable component
       setData(response.data)
-      setView(response.data.metadata.slice(0, imageCount))
+      setView(response.data.metadata.slice(1, imageCount))
+      setPage(page+1)
     });
 
     url = process.env.REACT_APP_BASE_URI + '/dropdowns';
@@ -74,9 +82,22 @@ function Gallery({ connect, account }) {
     if (bottom) { 
       console.log('bottom')
       // GRAB MORE DATA
-      var newView = getFilterData()?.slice(0, imageCount+30)
+      let url = process.env.REACT_APP_BASE_URI + '/gallery';
+      axios.post(url, { season: season, page: page, batchSize: 100 }).then((response) => {
+        // Set data and viewable data for scrollable component
+        var newMeta = [...data.metadata, ...response.data.metadata].sort((a,b) => {
+          return a.name.split('#')[1] - b.name.split('#')[1]
+        })
+
+        console.log(newMeta.length)
+        response.data.metadata = newMeta
+        setData(response.data)
+        setView(response.data.metadata.slice(1, imageCount+100))
+        setPage(page+1)
+      });
+      var newView = getFilterData()?.slice(0, imageCount+100)
       setView(newView)
-      setImageCount(imageCount + 30)
+      setImageCount(imageCount + 100)
     }
   }
 
@@ -173,6 +194,7 @@ function Gallery({ connect, account }) {
               <div>
                 <button className="button-connect" onClick={() => setSeason('s1')}>Season 1</button>
                 <button className="button-connect" onClick={() => setSeason('s2')}>Season 2</button>
+                <button className="button-connect" onClick={() => setSeason('s2.5')}>Season 2.5</button>
                 {/* <button className="button-connect" onClick={() => resetFilters()}>Reset Filters</button> */}
               </div>
               {Object.keys(dropdownData).map((key) => (
