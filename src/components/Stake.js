@@ -70,7 +70,7 @@ function Stake({account, contracts}) {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
   
-        setContract(new ethers.Contract(process.env.REACT_APP_PIXEL_CONTRACT, erc20, signer))
+        setContract(new ethers.Contract(process.env.REACT_APP_BAE_TOKEN, erc20, signer))
         console.log('here')
         setError('')
       } catch (e) {
