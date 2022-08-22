@@ -82,6 +82,11 @@
 .desc-top {
     text-align: center;
 }
+
+.loadingView > h1 {
+    font-size: 60px;
+    font-family: 'Articulat.CF-V3-Heavy';
+}
 .desc-top > h1 {
     font-size: 60px;
     font-family: 'Articulat.CF-V3-Heavy';

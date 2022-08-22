@@ -232,6 +232,37 @@ function Stake({account, contracts}) {
   React.useEffect(() => {
   }, []);
 
+  const addBaeToken = async () => {
+    const tokenAddress = process.env.REACT_APP_BAE_TOKEN;
+    const tokenSymbol = 'BAE';
+    const tokenDecimals = 18;
+    const tokenImage = "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baetoken.png";
+
+    try {
+      // wasAdded is a boolean. Like any RPC method, an error may be thrown.
+      const wasAdded = await window.ethereum.request({
+        method: 'wallet_watchAsset',
+        params: {
+          type: 'ERC20', // Initially only supports ERC20, but eventually more!
+          options: {
+            address: tokenAddress, // The address that the token is at.
+            symbol: tokenSymbol, // A ticker symbol or shorthand, up to 5 chars.
+            decimals: tokenDecimals, // The number of decimals in the token
+            image: tokenImage, // A string url of the token logo
+          },
+        },
+      });
+
+      if (wasAdded) {
+        console.log('Thanks for your interest!');
+      } else {
+        console.log('Your loss!');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <div>
@@ -259,6 +290,8 @@ function Stake({account, contracts}) {
 
       {isLoading ? (
         <div className="loadingView">
+          <h1>Welcome to <span className="pink">Staking</span></h1>
+          <p>Please verify wallet to continue.</p>
           <button className="mint-button" onClick={handleSign}>Verify Wallet</button>
         </div> 
       ) : (
@@ -266,7 +299,7 @@ function Stake({account, contracts}) {
           <div className="desc-viewer">
             <div className='desc-top'>
                 <h1 className="pink">STAKING</h1>
-                <p className="stake-description">Earn daily rewards for you Bae Cafe, Meka Baes or Pixel Baes in $BAE. Tokens for exclusive marketplace perks.</p>
+                <p className="stake-description">Earn daily rewards for Bae Cafe, Meka Baes or Pixel Baes in $BAE. Tokens for exclusive marketplace perks.</p>
             </div>
             <div className='desc-bottom'>
                 <h2>Current Balance</h2>
@@ -290,6 +323,7 @@ function Stake({account, contracts}) {
             <div className="stake-box">
                 <div className="stake-top">
                     <h1 className="stake-header">DAILY <span className="pink">REWARDS</span></h1>
+                    <button className="stake-button" onClick={addBaeToken}>Import $BAE</button>
                 </div>
                 <div className="stake-bottom col">
                   <h2><span className="pink">{totals[0]}</span> BaeCafe</h2>
