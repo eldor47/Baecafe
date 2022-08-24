@@ -7,8 +7,6 @@ import Header from './components/Header'
 
 import { ethers } from "ethers";
 import { useState, useEffect } from "react";
-import erc721Abi from "./abi/erc721.json";
-import erc721aAbi from "./abi/erc721a.json";
 
 import React from 'react';
 import Marketplace from "./components/Marketplace";

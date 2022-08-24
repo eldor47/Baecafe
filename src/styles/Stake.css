@@ -83,6 +83,10 @@
     text-align: center;
 }
 
+.small > a {
+    cursor: pointer;
+}
+
 .loadingView > h1 {
     font-size: 60px;
     font-family: 'Articulat.CF-V3-Heavy';

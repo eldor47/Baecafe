@@ -8,10 +8,6 @@ function Header({ connect, account }) {
 
   const [open, setOpen] = React.useState(false);
 
-  const toggleOpen = () => {
-
-  }
-
   const hasWindow = typeof window !== 'undefined';
 
   React.useEffect(() => {

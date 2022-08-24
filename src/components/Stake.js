@@ -32,6 +32,10 @@ const signMessage = async ({ setError, message }) => {
   }
 };
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 function Stake({account, contracts}) {
 
   const [isLoading, setIsLoading] = React.useState(true);
@@ -87,7 +91,9 @@ function Stake({account, contracts}) {
   };
 
   useEffect(() => {
-    connect()
+    if(window.ethereum) {
+      connect()
+    }
   }, [account])
 
   useEffect(() => {
@@ -201,6 +207,8 @@ function Stake({account, contracts}) {
 
   const claim = async () => {
     // Lets check to make sure its all good and they havent claimed yet
+    // Send to backend to then verify, get WL and 
+    setClaimDisabled(true)
     let url1 = process.env.REACT_APP_BASE_URI + '/ownednfts';
     axios.post(url1, {sig: signature}).then((response) => {
       if(response.data.statusCode === 403) {
@@ -215,8 +223,6 @@ function Stake({account, contracts}) {
       }
     });
 
-    // Send to backend to then verify, get WL and 
-    setClaimDisabled(true)
     let url = process.env.REACT_APP_BASE_URI + '/claim';
     axios.post(url, {sig: signature, chainId: parseInt(process.env.REACT_APP_NETWORK_ID)}).then((response) => {
       if(response.data.statusCode != 200) {
@@ -263,6 +269,27 @@ function Stake({account, contracts}) {
     }
   }
 
+  const getDateMessage = () => {
+    var d = new Date()
+    var month = monthNames[d.getMonth()]
+    var currentMonthDate = d.getDate()
+    var nexClaimDate = 5
+    if(d.getDate() > 19) {
+      nexClaimDate = 5
+    }
+    if(d.getDate > 5) {
+      nexClaimDate = 19
+    }
+    if(currentMonthDate > 19) {
+      if(monthNames[d.getMonth()+1])
+        month = monthNames[d.getMonth()+1]
+      else 
+        month = monthNames[0]
+    }
+
+    return month + ' ' + nexClaimDate + 'th 12:00 UTC'
+  }
+
 
   return (
     <div>
@@ -306,6 +333,9 @@ function Stake({account, contracts}) {
                 <button>{userBalance.toFixed(2)} $BAE</button>
                 <img className="token"src="./image/baetoken.png"></img>
             </div>
+            <p className="small">Want to support our gas funding wallet? <a onClick={() => {
+              navigator.clipboard.writeText('0xd8480dBb0C731c378c2C9243c620943483568dBC');
+            }}>Copy Address</a></p>
           </div>
           <div className="stake-viewer">
             <div className="stake-box full">
@@ -339,7 +369,7 @@ function Stake({account, contracts}) {
                 <div className="stake-top">
                     <h1 className="stake-header">PENDING <span className="pink">REWARDS</span></h1>
                     <button className="stake-button" onClick={refresh}>Refresh</button>
-                    <button className="stake-button" disabled={claimDisabled} onClick={claim}>Claim</button>
+                    <button className="stake-button" disabled={claimDisabled || (totals[0] === 0 && totals[1] === 0 && totals[2] === 0)} onClick={claim}>Claim</button>
                 </div>
                 <div className="stake-bottom col">
                   <h2><span className="pink">{totals[0]}</span> BaeCafe</h2>
@@ -351,7 +381,8 @@ function Stake({account, contracts}) {
                   <h2><span className="pink">{((unclaimed[0]) + (unclaimed[1]) + (unclaimed[2])).toFixed(2)}</span> $BAE UNCLAIMED*</h2>
                   <p>{status}</p>
                   <p className="error">{error}</p>
-                  <p className="small">*Your rewards stack and you can claim once daily</p>
+                  <p className="small">*Your rewards stack and claims are biweekly resetting each month.</p>
+                  <p className="small">Next claim reset: {getDateMessage()}</p>
                 </div>
             </div>
           </div>
