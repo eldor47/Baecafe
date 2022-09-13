@@ -39,7 +39,7 @@
 }
 
 .filter-item {
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #f0f1f3;
     height: 30px;
     width: 100%;
     text-align: start;
@@ -64,7 +64,7 @@
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    height: 92vh;
+    height: 93vh;
 }
 
 .pink {
@@ -108,7 +108,7 @@
     transform: translate(-50%, -50%);
     width: max(50vw, 350px);
     height: max(50vh, 600px);
-    background-color: rgba(9,24,51,0.95);
+    background-color: rgba(30, 33, 33,0.95);
     z-index: 2;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;

@@ -8,18 +8,21 @@
 }
 a {
   text-decoration: none;
-  color: #ea00d9;
+  color: #3e8af6;
 }
 
 .header {
-  min-height: 5vh;
+  height: 60px;
+  width: 93vw;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   column-gap: 30px;
   padding: 5px 20px;
-  font-size: 14px;
+  font-size: 18px;
   z-index: 2;
+  margin-left: 50px;
+  margin-right: 50px;
 }
 
 @media only screen and (max-width: 1080px) {
@@ -27,7 +30,10 @@ a {
       flex-direction: column;
       justify-content: center;
       align-items: left;
+      height: 400px;
       row-gap: 20px;
+      margin-right: 0;
+      margin-left: 0;
   }
 
   .headerIcon {
@@ -35,16 +41,24 @@ a {
     height: 35px;
     align-self: flex-start;
   }
-}
 
+  .header-right {
+    margin: auto;
+    justify-content: center;
+  }
+
+  body {
+    overflow: scroll;
+  }
+}
 
 .logo {
   width: 50px;
 }
 
 .headerIcon {
-  width: 35px;
-  height: 35px;
+  width: 60px;
+  height: 60px;
 }
 
 .header-item {
@@ -67,10 +81,11 @@ a {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  height: 13px;
+  height: 18px;
   font-family: 'Articulat.CF-V3-Bold';
 
-  border: 1px solid white;
+  color:#3e8af6;
+  border: 1px solid #f0f1f3;
   padding: 10px;
   
   text-align: center;
@@ -83,10 +98,14 @@ a {
 .button-connect {
   border-radius: 3px;
   border: none;
-  padding: 5px;
+  padding: 7px;
   font-family: 'Articulat.CF-V3-Bold';
   cursor: pointer;
   margin-right: 10px;
+
+  background-color: #3e8af6;
+  color:#f0f1f3;
+  border: 1px solid #f0f1f3;
 
   opacity: 1;
   transition: opacity 500ms;
@@ -131,10 +150,21 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-left: auto;
+  column-gap: 10px;
 }
 
 .header-icon {
   width: 30px;
+  height: 30px;
+  height: auto;
+
+  float: none;
+  clear: both;
+
+  border: 1px solid #f0f1f3;
+  border-radius: 50%;
+  padding: 8px;
 
   opacity: 1;
   transition: opacity 500ms;
@@ -142,7 +172,6 @@ a {
 }
 
 .header-icon:hover {
-  width: 30px;
 
   opacity: .5;
   transition: opacity 500ms;

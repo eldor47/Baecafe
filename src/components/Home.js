@@ -11,13 +11,10 @@ function Home() {
                 <div className="home">
                     <div className="left" data-aos="fade-right">
                         <h1>WELCOME</h1>
-                        <h1 className="offset">BAE CAFE</h1>
+                        <h1 className="offset">TO <span className='accent'>BAECAFE</span></h1>
                         <p>A Web3 Brand for Digital Artists and Enthusiasts.</p>
                         <br></br>
-                        <p>Scroll to Continue</p>
-                    </div>
-                    <div className="right" data-aos="fade-up">
-
+                        <p><span className='accent'>Scroll</span> to Continue</p>
                     </div>
 
                     <div className="roadmap">
