@@ -29,7 +29,9 @@ body {
   font-family: 'Articulat.CF-V3', Consolas, "Courier New", monospace;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('./image/BAECAFE-background.png');
-  color: rgb(255, 255, 255);
+  background-position: bottom;
+  background-image: url('./image/BAECAFE-background.jpg');
+  color: #f0f1f3;
+
+  overflow: hidden;
 }

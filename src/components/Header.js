@@ -47,7 +47,7 @@ function Header({ connect, account }) {
 
   return (
     <div className="header">
-      <img onClick={toggle} className="headerIcon"src="./image/logo-s2.png"></img>
+      <img onClick={toggle} className="headerIcon"src="./image/LOGO.png"></img>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('')}> About </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('gallery')}> Gallery </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('stake')}> Staking </div>
@@ -55,7 +55,7 @@ function Header({ connect, account }) {
       <div hidden={open} className="button"> SEASON 2.5 </div>
       {account == "" ? (
         <button hidden={open} onClick={connect} className="button-connect">
-          Connect
+          CONNECT WALLET
         </button>
       ) : (
         <p hidden={open} >{account.substring(0, 2)}...{account.substring(account.length - 4)}</p>
