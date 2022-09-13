@@ -14,7 +14,7 @@ function Home() {
                         <h1 className="offset">TO <span className='accent'>BAECAFE</span></h1>
                         <p>A Web3 Brand for Digital Artists and Enthusiasts.</p>
                         <br></br>
-                        <p><span className='accent'>Scroll</span> to Continue</p>
+                        <p className='offset-scroll'><span className='accent'>Scroll</span> to Continue</p>
                     </div>
 
                     <div className="roadmap">

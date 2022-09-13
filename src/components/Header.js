@@ -11,6 +11,7 @@ function Header({ connect, account }) {
   const hasWindow = typeof window !== 'undefined';
 
   React.useEffect(() => {
+    console.log(hasWindow)
     if (hasWindow) {
       function handleResize() {
         if(getWindowDimensions().width < 800) {
@@ -25,6 +26,7 @@ function Header({ connect, account }) {
 
   React.useEffect(() => {
     if(getWindowDimensions().width < 800) {
+      console.log(getWindowDimensions())
       setOpen(true)
     }
     
