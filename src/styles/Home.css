@@ -47,6 +47,9 @@ scrollbar-width: none;  /* Firefox */
 
     padding-top: 10%;
 }
+.offset-scroll {
+    margin-top: 100px;
+}
 
 .left > p {
     font-family: 'Articulat.CF-V3-Bold';
@@ -177,6 +180,18 @@ scrollbar-width: none;  /* Firefox */
     .left {
         width: 90vw;
         font-size: calc(min(2rem, 60px, 5em));
+    }
+
+    .left > h1 {
+        font-size: 55px;
+        text-align: center;
+        line-height: normal;
+    }
+
+    .left > p {
+        text-align: center;
+        width: 100%;
+        margin-left: 0;
     }
     .roadmap-panel {
         width: 100%;
