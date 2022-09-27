@@ -22,47 +22,41 @@
 scrollbar-width: none;  /* Firefox */
 }
 
-.left {
-    width: 35vw;
-    height: 35vw;
-    border: 10px solid transparent;
-    min-width: 400px;
+.left > h1 {
+    line-height: 140px;
+}
 
-    font-size: calc(min(2.5rem, 60px, 5em));
+.accent {
+    color: #3e8af6;
+}
+
+.left {
+    width: 100%;
+    height: 80vh;
+    padding: 50px;
+    min-width: 400px;
+    text-align: left;
+
+    font-size: 80px;
     font-family: 'Articulat.CF-V3-Heavy';
 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: flex-start;
 
     padding-top: 10%;
 }
-
-.offset {
-    margin-left: 150px;
-    color: #ea00d9;
-  }
-
-.left > p {
-    font-family: 'Articulat.CF-V3';
-    font-size: 16px;
-    width: 350px;
-    font-size: 18px;
+.offset-scroll {
+    margin-top: 100px;
 }
 
-.right {
-    width: 40vw;
-    height: 100vh;
-    min-height: 350px;
-    border: 10px solid transparent;
-    min-width: 400px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url('../image/home/ic-home-2-trim.png');
-    display: block;
-    align-self: center;
+.left > p {
+    font-family: 'Articulat.CF-V3-Bold';
+    font-size: 16px;
+    width: 60vw;
+    font-size: 18px;
+    margin-left: 10px;
 }
 
 .roadmap {
@@ -90,7 +84,7 @@ scrollbar-width: none;  /* Firefox */
 .roadmap-desc > h1 {
     font-family: 'Articulat.CF-V3-Heavy';
     font-size: max(20px, 3.75em);
-    color: #ea00d9;
+    color: #3e8af6;
 }
 
 .roadmap-desc > p {
@@ -154,7 +148,7 @@ scrollbar-width: none;  /* Firefox */
     width: 100%;
     border-radius: 2px;
 
-    border: 1px solid white;
+    border: 1px solid #f0f1f3;
     transition: border 500ms;
     transition-timing-function: ease-in;
 }
@@ -186,6 +180,18 @@ scrollbar-width: none;  /* Firefox */
     .left {
         width: 90vw;
         font-size: calc(min(2rem, 60px, 5em));
+    }
+
+    .left > h1 {
+        font-size: 55px;
+        text-align: center;
+        line-height: normal;
+    }
+
+    .left > p {
+        text-align: center;
+        width: 100%;
+        margin-left: 0;
     }
     .roadmap-panel {
         width: 100%;

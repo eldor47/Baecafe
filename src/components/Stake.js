@@ -277,7 +277,7 @@ function Stake({account, contracts}) {
     if(d.getDate() > 19) {
       nexClaimDate = 5
     }
-    if(d.getDate > 5) {
+    if(d.getDate() > 5) {
       nexClaimDate = 19
     }
     if(currentMonthDate > 19) {
