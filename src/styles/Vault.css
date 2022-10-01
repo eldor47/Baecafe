@@ -6,8 +6,13 @@
     color: #3e8af6;
 }
 
+.descriptionHolder{
+    text-align: center;
+}
+
 .vault-page{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -27,6 +32,23 @@
     width: 50%;
 }
 
+.vault > p {
+    font-family: 'Articulat.CF-V3-Bold';
+    text-align: right;
+    font-size: 18px;
+    width: 50%;
+}
+
+.vault-description{
+    width: 300px;
+    margin-top: 50px;
+    overflow: auto;
+    height: 83vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
 .imageDesc{
     justify-content: center;
     flex-basis: 100%;
@@ -36,18 +58,21 @@
 .vault-viewer {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
+    overflow: auto;
     align-items: start;
     column-gap: 20px;
     row-gap: 40px;
     height: 83vh;
-    overflow: auto;
     z-index: 1;
     flex-basis: 59%;
-
     margin-top: 10vh;
-
     scroll-behavior: smooth;
+}
+
+.gridList {
+    width: 500;
+    height: 200;
 }
 
 .vault-modal{
@@ -83,37 +108,25 @@
     height: max(40vh, 400px);
 }
 
-
-@media only screen and (max-width: 1080px) {
-    .vault-viewer {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        column-gap: 20px;
-        row-gap: 40px;
-        height: 83vh;
-        overflow: auto;
-        z-index: 1;
+@media only screen and (max-width: 1080px) 
+{     
+    .vault {         
+        width: 100%;
+        flex-basis: 100%;     
+        height: auto;
+    }      
+    .vault-viewer {         
+        width: 100%;
         flex-basis: 100%;
-    
-        margin-top: 0px;
-    
-        scroll-behavior: smooth;
-    }
-    
-    .vault {
-        flex-basis: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items:center;
-        height: 60vh;
-        margin-top: 3vh;
-        margin-bottom: 5vh;
-    }
+    } 
 
-    .vault > h1{
+    
+    .vault > h1 {
+        text-align: center;
         font-size: 40px;
     }
 
+    .vault > p {
+        text-align: center;
+    }
 }
