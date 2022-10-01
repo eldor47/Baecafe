@@ -152,10 +152,11 @@ function Marketplace({account, contracts}) {
           } else {
             setStatus(response.data.msg)
             setIsLoading(false)
+            getWL(id)
             setTimeout(() => {
               getListingData()
               handleClose(false)
-            }, 2500);
+            }, 5000);
           }
         });
       }
