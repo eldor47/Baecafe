@@ -124,9 +124,14 @@ function Vault() {
                                 <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4" type="video/mp4"/>
                             </video>
                         </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4" cols={3}>
-                            <video height={1000} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4", description: beachDesc, fdlink: "https://foundation.app/@baecafe/bae/7"})}>
+                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4" cols={2}>
+                            <video height={700} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4", description: beachDesc, fdlink: "https://foundation.app/@baecafe/bae/7"})}>
                                 <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4" type="video/mp4"/>
+                            </video>
+                        </GridListTile>
+                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4" cols={1}>
+                            <video height={500} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4", description: beachDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/3"})}>
+                                <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4" type="video/mp4"/>
                             </video>
                         </GridListTile>
                     </GridList>
