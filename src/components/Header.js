@@ -52,6 +52,7 @@ function Header({ connect, account }) {
       <img onClick={toggle} className="headerIcon"src="./image/LOGO.png"></img>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('')}> About </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('gallery')}> Gallery </div>
+      <div hidden={open} className="header-item" onClick={() => handleOnClick('vault')}> Vault </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('stake')}> Staking </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('marketplace')}> Marketplace </div>
       <div hidden={open} className="button"> SEASON 2.5 </div>

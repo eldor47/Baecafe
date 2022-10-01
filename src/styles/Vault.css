@@ -1,0 +1,132 @@
+.white{
+    color: #FFFFFF;
+}
+
+.blue{
+    color: #3e8af6;
+}
+
+.descriptionHolder{
+    text-align: center;
+}
+
+.vault-page{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vault{
+    flex-basis: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    height: 86vh;
+    margin-top: 7vh;
+}
+
+.vault > h1 {
+    text-align: left;
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: 65px;
+    width: 50%;
+}
+
+.vault > p {
+    font-family: 'Articulat.CF-V3-Bold';
+    text-align: right;
+    font-size: 18px;
+    width: 50%;
+}
+
+.vault-description{
+    width: 300px;
+    margin-top: 50px;
+    overflow: auto;
+    height: 83vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.imageDesc{
+    justify-content: center;
+    flex-basis: 100%;
+    text-align: center;
+}
+
+.vault-viewer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: auto;
+    align-items: start;
+    column-gap: 20px;
+    row-gap: 40px;
+    height: 83vh;
+    z-index: 1;
+    flex-basis: 59%;
+    margin-top: 10vh;
+    scroll-behavior: smooth;
+}
+
+.gridList {
+    width: 500;
+    height: 200;
+}
+
+.vault-modal{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: max(50vw, 400px);
+    height: max(80vh, 800px);
+    background-color: rgba(30, 33, 33,0.95);
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.modal-main{
+    width: 100%;
+    height: 80%;
+}
+
+.vault-viewer::-webkit-scrollbar {
+    display: none;
+}
+
+.vault-image-item{
+    width: max(40vw, 300px);
+    height: max(40vh, 400px);
+}
+
+@media only screen and (max-width: 1080px) 
+{     
+    .vault {         
+        width: 100%;
+        flex-basis: 100%;     
+        height: auto;
+    }      
+    .vault-viewer {         
+        width: 100%;
+        flex-basis: 100%;
+    } 
+
+    
+    .vault > h1 {
+        text-align: center;
+        font-size: 40px;
+    }
+
+    .vault > p {
+        text-align: center;
+    }
+}
