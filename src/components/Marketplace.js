@@ -345,8 +345,8 @@ function Marketplace({account, contracts}) {
           <div className='item-body'>
             <p className='description'>{e.description}</p>
             <div className='button-group'>
-              <a hidden={!e.twitter} href={e.twitter}><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/twitter.png"/></a>
-              <a hidden={!e.discord} href={e.discord}><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/discord.png"/></a>
+              <a hidden={!e.twitter} href={e.twitter} target="_blank" rel="noopener noreferrer"><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/twitter.png"/></a>
+              <a hidden={!e.discord} href={e.discord} target="_blank" rel="noopener noreferrer"><img className='header-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/discord.png"/></a>
             </div>
             <div className='button-group'>
                             {
