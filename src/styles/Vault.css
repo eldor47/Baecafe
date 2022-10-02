@@ -68,6 +68,7 @@
     flex-basis: 59%;
     margin-top: 10vh;
     scroll-behavior: smooth;
+    margin-bottom: 20vh;
 }
 
 .gridList {

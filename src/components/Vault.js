@@ -3,6 +3,7 @@ import "../styles/Vault.css";
 import OutsideClickHandler from 'react-outside-click-handler';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
+import AOS from 'aos'
 
 function Vault() {
     
@@ -25,10 +26,16 @@ function Vault() {
     + "Voted by holders of BaeCafe NFTs, Seasons 1 or 2."
     + "MEKABAE 385 Derivative";
     const beachDesc = "BaeCafe pixelated"
+    const nekoboxDesc = `One of three collaborations with community members related to BaeCafe's first season -- featuring Nekobox, a Third World country illustrator, who has survived government oppression with web3 and community.`
+    
 
     const [modalOpen, openModal] = React.useState(false);
     const [selectedImage, setImage] = React.useState(false);
     const [selectedVideo, setVideo] = React.useState(false);
+
+    React.useEffect(() => {
+        AOS.init({duration: 500})
+    }, [])  
 
     const handleAddClick = (selectedImage) => {
         if(selectedImage.link.includes('.mp4')){
@@ -125,12 +132,12 @@ function Vault() {
                             </video>
                         </GridListTile>
                         <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4" cols={2}>
-                            <video height={700} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4", description: beachDesc, fdlink: "https://foundation.app/@baecafe/bae/7"})}>
+                            <video height={575} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4", description: sayakaDesc, fdlink: "https://foundation.app/@baecafe/bae/7"})}>
                                 <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4" type="video/mp4"/>
                             </video>
                         </GridListTile>
                         <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4" cols={1}>
-                            <video height={500} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4", description: beachDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/3"})}>
+                            <video height={500} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4", description: nekoboxDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/3"})}>
                                 <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4" type="video/mp4"/>
                             </video>
                         </GridListTile>
