@@ -153,6 +153,7 @@ function Marketplace({account, contracts}) {
             setStatus(response.data.msg)
             setIsLoading(false)
             getWL(id)
+            balance()
             setTimeout(() => {
               getListingData()
               handleClose(false)
