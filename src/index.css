@@ -37,8 +37,9 @@ body {
   overflow: hidden;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1500px) {
   body {
     background-image: url('./image/BAECAFE-mobilebackground.jpg');
+    overflow: auto;
   }
 }
