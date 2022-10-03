@@ -6,6 +6,8 @@ import pixelbaesabi from "../abi/erc20.json";
 
 import { ethers } from "ethers";
 
+import AOS from 'aos';
+
 
 const signMessage = async ({ setError, message }) => {
   try {
@@ -67,6 +69,7 @@ function Marketplace({account, contracts}) {
       console.log(response.data)
       setData(response.data.listings)
       setView(response.data.listings)
+      AOS.init({duration: 500})
     });
   }
 
@@ -265,18 +268,21 @@ function Marketplace({account, contracts}) {
     }
   }
 
-  const checkWL = () => {
+  const checkWL = (listing) => {
     for(var address of addresses) {
       if(address.toLowerCase() === account.toLowerCase()) {
         return 'Wallet already whitelisted!'
       }
+    }
+    if(addresses.length >= listing.maxWhitelist) {
+      return 'No more spots remaining'
     }
   }
 
   return (
     <div className="marketplace">
       {modalOpen ? (
-        <div className="modal-bg" >
+        <div className="modal-bg" data-aos="fade-in">
           <OutsideClickHandler onOutsideClick={() => { handleClose(false) }}>
             <div className="modal">
               <div className="modal-header" onClick={() => {handleClose(false)}}>X</div>
@@ -304,9 +310,9 @@ function Marketplace({account, contracts}) {
                     {listing.description}
                   </p>
                   <div className='desc-mark'>
-                    <button disabled={userBalance < listing.price || checkWL()} onClick={() => baeApproval(listing.price, listing.id)}>Reserve for {listing.price} $BAE</button>
+                    <button disabled={userBalance < listing.price || checkWL(listing)} onClick={() => baeApproval(listing.price, listing.id)}>Reserve for {listing.price} $BAE</button>
                     {userBalance < listing.price ? <p className='error'>Not enough $BAE</p> : <></>}
-                    {<p className='error'>{checkWL()}</p>}
+                    {<p className='error'>{checkWL(listing)}</p>}
                     <p className='error'>{error}</p>
                     <p>{status}</p>
                   </div>
@@ -315,7 +321,7 @@ function Marketplace({account, contracts}) {
           </OutsideClickHandler>
         </div>
       ) : (<></>)}
-      <div className="left-market">
+      <div className="left-market" data-aos="fade-right">
         <h1>CATEGORIES</h1>
         <div className="category-filter">
           <div onClick={()=> setCategory('All')} className='category-filter-item'>All</div>
@@ -338,7 +344,7 @@ function Marketplace({account, contracts}) {
           <img className="token"src="./image/baetoken.png"></img>
         </div>
       </div>
-      <div className="right-market">
+      <div className="right-market" data-aos="fade-left">
       {view.map(e => {
         return (<div className="market-item" key={e.id}>
           <div className="item-img" style={{backgroundImage: `url(${e.image})`, backgroundSize: 'cover', backgroundPosition: "center"}}></div>
