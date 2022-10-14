@@ -232,8 +232,8 @@ function Mint({ account }) {
         </div>
       ) : (
           <div className="mint-viewer">
-            <h1>SEASON 2.5</h1>
-            <h1 className="pink">PIXELBAES</h1>
+            <h1>SEASON 3</h1>
+            <h1 className="pink">Elements by Orange Sekaii</h1>
             <Timer></Timer>
             <h2 hidden={pausedStates.presale && pausedStates.public}>{supply.totalSupply} / {supply.maxSupply}</h2>
             {/* <button className="mint-button" hidden={pausedStates.presale && (supply.totalSupply / supply.maxSupply !== 1)} onClick={handleSign}>MINT PRESALE</button>
