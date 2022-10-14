@@ -1,4 +1,266 @@
 .marketplace {
+    padding-top: 20px;
     width: 100%;
     height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.modal-main-listing {
+    height: 95%;
+    text-align: center;
+    width: 70%;
+}
+
+.modal-main-listing > h1 {
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: 40px;
+    color: #3e8af6;
+}
+.list-wl {
+    height: 60%;
+    list-style: none;
+    margin-top: 30px;
+    overflow: auto;
+}
+
+.left-market {
+    height: 90vh;
+    width: 15%;
+    text-align: center;
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: 35px;
+}
+
+.left-market > h1 {
+    font-size: 35px;
+    text-align: center;
+    width: 100%;
+    color: #3e8af6;
+}
+.info-commission {
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.right-market {
+    overflow: auto;
+    padding:0;
+    height: 82vh;
+    width:70%;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.desc-mark {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.desc-mark > p {
+    flex-basis: 100%;
+}
+
+.desc-mark > button {
+    border: 2px solid #f0f1f3;
+    background-color: rgba(255, 255, 255, 0.15);
+    height: 50px;
+    color: #f0f1f3;
+    font-size: 20px;
+    transition: background-color 200ms ease-out;
+    border-radius: 3px;
+    margin-bottom: 5px;
+    flex-basis: 50%;
+}
+
+.desc-mark > button:hover{
+    opacity: 0.75;
+    transition: opacity 200ms;
+    transition-timing-function: ease-in;
+    cursor: pointer;
+}
+
+.market-item {
+    width: 250px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(30, 33, 33,0.95);
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+
+
+    text-align: center;
+}
+
+.button-submit {
+    border-radius: 3px;
+    border: none;
+    padding: 5px;
+    font-family: 'Articulat.CF-V3-Bold';
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 7px;
+
+    opacity: 1;
+    transition: opacity 500ms;
+    transition-timing-function: ease-out;
+}
+
+.button-submit:hover {
+    opacity: .5;
+    transition: opacity 500ms;
+    transition-timing-function: ease-in;
+}
+
+.item-img {
+    width: 250px;
+    flex-basis: 50%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+}
+
+.item-body {
+    flex-basis: 50%;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.description {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.expiration {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: darkred;
+}
+
+.category-filter {
+    width: 100%;
+    font-family: 'Articulat.CF-V3-Heavy';
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.category-filter-item {
+    border: 2px solid rgba(0,0,0,0.9);
+    margin: 2px;
+    color: black;
+    background-color: white;
+    width: 250px;
+    text-align: center;
+    height: 25px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.filter-disabled {
+    border: 2px solid rgba(0,0,0,0.9);
+    margin: 2px;
+    color: black;
+    background-color: rgb(133, 133, 133);
+    width: 250px;
+    text-align: center;
+    height: 25px;
+    border-radius: 10px;
+    cursor: not-allowed;
+}
+
+.category-filter-item:hover {
+    opacity: .5;
+    transition: opacity 500ms;
+    transition-timing-function: ease-in;
+}
+
+/* MARKETPLACE PAGE (THANKS JAMES)*/
+.marketplace{
+	height: initial;
+    max-width: 1600px;
+    margin: 30px auto;
+    align-items: initial;
+}
+.left-market{
+    width:20%;
+    padding:0 30px 0 0;
+}
+.category-filter .category-filter-item,
+.category-filter .filter-disabled{
+    width: 100%;
+    max-width: 250px;
+}
+.market-item {
+    min-height: 570px;
+    min-width: 240px;
+    width: 20%;
+    margin-bottom: 30px;
+}
+.market-item .item-img{
+	width: 100%;
+	min-height: 220px;
+}
+.market-item .item-body{
+	padding:10px 10px 20px;
+	flex-basis: initial;
+} 
+.market-item p.description{
+    min-height: 160px;
+    padding:15px;
+    word-break: break-word;
+}
+
+@media(max-width: 1500px){
+	.market-item {
+	    min-width: 200px;
+	    width: 30%;
+	}
+	.right-market{ width: 60%; padding: 0 5%; }
+
+}
+@media(max-width: 1100px){
+	.left-market{ width: 30%;}
+	.right-market{ width: 50%; padding: 0 5%; }
+	.market-item {
+	    min-width: 200px;
+	    width: 45%;
+	}
+}
+@media(max-width: 860px){
+	.left-market{ width: 90%; padding: 10px 5% 40px;height: auto;}
+	.right-market{ width: 90%; padding: 0 5%; }
+
+}
+@media(max-width: 480px){
+	.market-item {
+	    min-width: 200px;
+	    width: 100%;
+	}
 }

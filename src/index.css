@@ -32,12 +32,14 @@ body {
   background-position: bottom;
   background-image: url('./image/BAECAFE-background.jpg');
   color: #f0f1f3;
+  background-color: rgb(60, 60, 60);
 
   overflow: hidden;
 }
 
-@media only screen and (max-width: 1080px) {
+@media only screen and (max-width: 1500px) {
   body {
     background-image: url('./image/BAECAFE-mobilebackground.jpg');
+    overflow: auto;
   }
 }

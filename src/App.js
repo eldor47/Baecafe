@@ -2,6 +2,7 @@ import "./App.css";
 import Home from "./components/Home";
 import Gallery  from "./components/Gallery";
 import Stake  from "./components/Stake";
+import Vault  from "./components/Vault";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from './components/Header'
 
@@ -11,6 +12,7 @@ import { useState, useEffect } from "react";
 import React from 'react';
 import Marketplace from "./components/Marketplace";
 import Mint from "./components/Mint";
+
 
 function App() {
   const [account, setAccount] = useState("");
@@ -48,6 +50,7 @@ function App() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/stake" element={<Stake account={account} contracts={contracts}/>} />
           <Route path="/marketplace" element={<Marketplace account={account} contracts={contracts}/>} />
+          <Route path="/vault" element={<Vault />} />
           {/* <Route path="/mint" element={<Mint account={account}/>} /> */}
         </Routes>
     </Router>
