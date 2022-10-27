@@ -138,6 +138,8 @@ function Mint({ account }) {
 
   const mintPresale = async() => {
     if(mintInfo) {
+      console.log({ value: ethers.utils.parseEther(price.toString()) })
+      console.log(mintInfo.merkleProofWL)
       try {
         var mintTx;
         if(mintInfo.whitelist) {
@@ -295,8 +297,9 @@ function Mint({ account }) {
         setStatus('Not on presale list. You will be able to mint up to 11 NFTs per transaction at normal pricing.')
       }
 
-      if(response.data.statusCode === 200 && response.data.mintInfo.whitelist) {
+      if(response.data.statusCode === 200 && !response.data.mintInfo.free && response.data.mintInfo.whitelist) {
         console.log(availWL)
+        response.data.mintInfo.merkleProofWL = response.data.mintInfo.merkleProof
         if(availWL === 0){
           setStatus('You have already used all your presale mints. You can still public mint up to 11 per transaction.')
           setWhitelisted(false)
