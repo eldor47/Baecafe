@@ -51,7 +51,7 @@ function App() {
           <Route path="/stake" element={<Stake account={account} contracts={contracts}/>} />
           <Route path="/marketplace" element={<Marketplace account={account} contracts={contracts}/>} />
           <Route path="/vault" element={<Vault />} />
-          {/* <Route path="/mint" element={<Mint account={account}/>} /> */}
+          <Route path="/mint" element={<Mint account={account}/>} />
         </Routes>
     </Router>
   );

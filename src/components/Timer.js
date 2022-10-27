@@ -5,7 +5,7 @@ function Timer() {
 
   const calculateTimeLeft = () => {
     var currDate = new Date()
-    var endDate = new Date(Date.UTC(2022, 7, 18, 14, 30, 0))
+    var endDate = new Date(Date.UTC(2022, 9, 27, 14, 0, 0))
     const difference = endDate - currDate;
     let timeLeft = {};
 
