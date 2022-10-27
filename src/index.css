@@ -34,8 +34,6 @@ body {
   /* background-image: url('./image/BAECAFE-background.jpg'); */
   color: #f0f1f3;
   background-color: rgb(60, 60, 60);
-
-  overflow: hidden;
 }
 
 @media only screen and (max-width: 1500px) {

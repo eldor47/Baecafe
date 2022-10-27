@@ -6,6 +6,7 @@
     justify-content: center;
     text-align: center;
     min-height: 99vh;
+    overflow: auto;
     row-gap: 25px;
 }
 
