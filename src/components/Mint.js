@@ -153,6 +153,7 @@ function Mint({ account }) {
       } catch (e) {
         setStatus('')
         setError(e.message)
+        console.log(e)
         if(e.message.includes('estimate gas')){
           setStatus('')
           setError('You have already minted!')
@@ -339,6 +340,7 @@ function Mint({ account }) {
         total += pricesPublic[i]
       }
     }
+    console.log(Math.round((total + Number.EPSILON) * 1000) / 1000)
     return Math.round((total + Number.EPSILON) * 1000) / 1000
   }
 
@@ -346,6 +348,7 @@ function Mint({ account }) {
     if(direction === "UP") {
       if(mintAmount + 1 > 11) {
         setMintAmount(11)
+        setPrice(getPrice(11, isWL))
       } else {
         var amount = mintAmount + 1
         setMintAmount(amount)
@@ -354,6 +357,7 @@ function Mint({ account }) {
     } else {
       if(mintAmount - 1 < 1) {
         setMintAmount(1)
+        setPrice(getPrice(1, isWL))
       } else {
         var amount = mintAmount - 1
         setMintAmount(amount)
