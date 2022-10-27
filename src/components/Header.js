@@ -55,7 +55,7 @@ function Header({ connect, account }) {
       <div hidden={open} className="header-item" onClick={() => handleOnClick('vault')}> Vault </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('stake')}> Staking </div>
       <div hidden={open} className="header-item" onClick={() => handleOnClick('marketplace')}> Marketplace </div>
-      <div hidden={open} className="button"> SEASON 2.5 </div>
+      <div hidden={open} className="button" onClick={() => handleOnClick('mint')}> SEASON 3 </div>
       {account == "" ? (
         <button hidden={open} onClick={connect} className="button-connect">
           CONNECT WALLET

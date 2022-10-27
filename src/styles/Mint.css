@@ -6,6 +6,7 @@
     justify-content: center;
     text-align: center;
     height: 93vh;
+    row-gap: 25px;
 }
 
 .image-mint {
@@ -55,3 +56,55 @@
         text-align: center;
     }
   }
+
+.mint-box {
+    border: 2px solid #f0f1f3;
+    width: 350px;
+    height: 200px;
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mint-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+}
+
+.mint-amount {
+    border: 1px solid #f2f2f2;
+    width: 50%;
+}
+
+.number {
+    font-size: 35px;
+    width: 50px;
+}
+
+.big {
+    font-size: 24px;
+}
+
+.icon-img {
+    width: 60px;
+    height: 60px;
+}
+
+.tall {
+    height: 70px;
+}
+
+.icon-holder {
+    display: flex;
+    column-gap: 25px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
