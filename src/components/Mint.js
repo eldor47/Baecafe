@@ -320,6 +320,7 @@ function Mint({ account }) {
           setWhitelisted(false)
           setPrice(0.106)
           setMintAmount(3)
+          setFree(true)
         } else {
           setStatus('You are elligible to mint 11 NFTs at a discounted price during the presale. You are also elligible to claim a free mint!')
           setWhitelisted(true)
