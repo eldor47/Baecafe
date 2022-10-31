@@ -407,7 +407,7 @@ function Mint({ account }) {
               <img className="icon-img tall" src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/electricicon.png"/>
               <img className="icon-img" src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/rareicon.png"/>
             </div>
-            <h2 hidden={pausedStates.presale}>{supply.totalSupply} / {supply.maxSupply + supply.freeSupply}</h2>
+            <h2 hidden={pausedStates.presale}>{supply.totalSupply} / {supply.maxSupply}</h2>
             {/* <button className="mint-button" hidden={pausedStates.presale && (supply.totalSupply / supply.maxSupply !== 1)} onClick={handleSign}>MINT PRESALE</button>
             <button className="mint-button" hidden={pausedStates.public && (supply.totalSupply / supply.maxSupply !== 1)} onClick={mintPublic}>MINT PUBLIC</button> */}
             {/* <div className="statusText">
