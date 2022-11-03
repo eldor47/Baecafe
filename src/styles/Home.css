@@ -1,7 +1,6 @@
 .home {
  width: 93vw;
- height: 110vh;
- margin-bottom: -20vh;
+ height: 100vh;
  border: 10px solid transparent;
  display: flex;
  justify-content: center;
