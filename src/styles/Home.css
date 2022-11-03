@@ -1,6 +1,5 @@
 .home {
- width: 93vw;
- height: 100vh;
+ height: 91vh;
  border: 10px solid transparent;
  display: flex;
  justify-content: center;
@@ -11,12 +10,12 @@
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.home::-webkit-scrollbar {
+body::-webkit-scrollbar {
     display: none;
 }
   
 /* Hide scrollbar for IE, Edge and Firefox */
-.home {
+body {
 -ms-overflow-style: none;  /* IE and Edge */
 scrollbar-width: none;  /* Firefox */
 }
