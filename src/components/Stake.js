@@ -365,7 +365,7 @@ function Stake({account, contracts}) {
                   <h2><span className="pink">{totals[2]}</span> PIXELBAES</h2>
                   <p>{totals[2]} $BAE per day</p>
                   <h2><span className="pink">{totals[3]}</span> ELEMENTS</h2>
-                  <p>{totals[3]} $BAE per day</p>
+                  <p>{totals[3] * 7} $BAE per day</p>
                   <h2><span className="pink">{(totals[0] * 10) + (totals[1] * 8) + (totals[2]) + (totals[3] * 7)}</span> $BAE DAILY</h2>
                 </div>
             </div>
