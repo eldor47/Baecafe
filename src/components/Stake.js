@@ -45,8 +45,8 @@ function Stake({account, contracts}) {
 
   const [signature, setSignature] = useState([]);
   const [data, setData] = React.useState([]);
-  const [totals, setTotals] = React.useState([0, 0, 0]);
-  const [unclaimed, setUnclaimed] = React.useState([0, 0, 0]);
+  const [totals, setTotals] = React.useState([0, 0, 0, 0]);
+  const [unclaimed, setUnclaimed] = React.useState([0, 0, 0, 0]);
   const [error, setError] = useState('');
   const [claimDisabled, setClaimDisabled] = useState(false);
 
@@ -135,8 +135,8 @@ function Stake({account, contracts}) {
     }
 
     // Send to backend to then verify, get WL and 
-    let url = process.env.REACT_APP_BASE_URI + '/ownednfts';
-    axios.post(url, {sig: sig}).then((response) => {
+    let url = process.env.REACT_APP_BASE_URI_NEW + '/ownedNfts';
+    axios.post(url, {sig: sig, chainId: parseInt(process.env.REACT_APP_NETWORK_ID)}).then((response) => {
       if(response.data.statusCode === 403) {
         setStatus('')
         setError('Invalid signature...')
@@ -149,8 +149,8 @@ function Stake({account, contracts}) {
 
   const refresh = () => {
     // Send to backend to then verify, get WL and 
-    let url = process.env.REACT_APP_BASE_URI + '/ownednfts';
-    axios.post(url, {sig: signature}).then((response) => {
+    let url = process.env.REACT_APP_BASE_URI_NEW + '/ownedNfts';
+    axios.post(url, {sig: signature, chainId: parseInt(process.env.REACT_APP_NETWORK_ID)}).then((response) => {
       if(response.data.statusCode === 403) {
         setStatus('')
         setError('Invalid signature...')
@@ -168,19 +168,18 @@ function Stake({account, contracts}) {
   }
 
   const loadData = (nfts) => {
-    var totals = [0, 0, 0]
-    var unclaimed = [0, 0, 0]
+    var totals = [0, 0, 0, 0]
+    var unclaimed = [0, 0, 0, 0]
     for(var nft of nfts) {
       if(nft.hasClaimed) {
         setClaimDisabled(true)
-        setError('You have already claimed today')
+        setError('You have already claimed during the current period!')
       }
       var season = nft.id.split(':')[0]
       nft.external_url = 'https://baecafe.s3.amazonaws.com/collections/' + season + '/' + nft.token_id + '.png'
       if(season === 's2.5') {
         nft.external_url = 'https://baecafe.s3.amazonaws.com/collections/' + season + '/' + nft.token_id + '.gif'
       }
-
 
       // Get total unclaimed
       if(season === 's1') {
@@ -189,9 +188,12 @@ function Stake({account, contracts}) {
       } else if (season === 's2'){
         totals[1]++
         unclaimed[1] += ((new Date() - new Date(nft.lastClaim)) / 1000) * ((8) / 86400)
-      } else {
+      } else if(season === 's2.5') {
         totals[2]++
         unclaimed[2] += ((new Date() - new Date(nft.lastClaim)) / 1000) * ((1) / 86400)
+      } else {
+        totals[3]++
+        unclaimed[3] += ((new Date() - new Date(nft.lastClaim)) / 1000) * ((7) / 86400)
       }
     }
 
@@ -199,7 +201,7 @@ function Stake({account, contracts}) {
     setTotals(totals)
 
     nfts = nfts.sort((a,b) => {
-      return b.token_address - a.token_address
+      return a.token_address - b.token_address
     })
 
     setData(nfts)
@@ -209,21 +211,21 @@ function Stake({account, contracts}) {
     // Lets check to make sure its all good and they havent claimed yet
     // Send to backend to then verify, get WL and 
     setClaimDisabled(true)
-    let url1 = process.env.REACT_APP_BASE_URI + '/ownednfts';
-    axios.post(url1, {sig: signature}).then((response) => {
+    let url1 = process.env.REACT_APP_BASE_URI_NEW + '/ownedNfts';
+    axios.post(url1, {sig: signature, chainId: parseInt(process.env.REACT_APP_NETWORK_ID)}).then((response) => {
       if(response.data.statusCode === 403) {
         setStatus('')
         setError('Invalid signature...')
       } else {
         for(var nft of response.data.nfts) {
           if(nft.hasClaimed){
-            setError('User has already claimed today. Resets daily at 12:00 UTC.')
+            setError('You have already claimed during the period.')
           }
         }
       }
     });
 
-    let url = process.env.REACT_APP_BASE_URI + '/claim';
+    let url = process.env.REACT_APP_BASE_URI_NEW + '/claim';
     axios.post(url, {sig: signature, chainId: parseInt(process.env.REACT_APP_NETWORK_ID)}).then((response) => {
       if(response.data.statusCode != 200) {
         setStatus('')
@@ -362,14 +364,16 @@ function Stake({account, contracts}) {
                   <p>{totals[1] * 8} $BAE per day</p>
                   <h2><span className="pink">{totals[2]}</span> PIXELBAES</h2>
                   <p>{totals[2]} $BAE per day</p>
-                  <h2><span className="pink">{(totals[0] * 10) + (totals[1] * 8) + (totals[2])}</span> $BAE DAILY</h2>
+                  <h2><span className="pink">{totals[3]}</span> ELEMENTS</h2>
+                  <p>{totals[2]} $BAE per day</p>
+                  <h2><span className="pink">{(totals[0] * 10) + (totals[1] * 8) + (totals[2]) + (totals[3] * 7)}</span> $BAE DAILY</h2>
                 </div>
             </div>
             <div className="stake-box">
                 <div className="stake-top">
                     <h1 className="stake-header">PENDING <span className="pink">REWARDS</span></h1>
                     <button className="stake-button" onClick={refresh}>Refresh</button>
-                    <button className="stake-button" disabled={claimDisabled || (totals[0] === 0 && totals[1] === 0 && totals[2] === 0)} onClick={claim}>Claim</button>
+                    <button className="stake-button" disabled={claimDisabled || (totals[0] === 0 && totals[1] === 0 && totals[2] === 0 && totals[3] === 0)} onClick={claim}>Claim</button>
                 </div>
                 <div className="stake-bottom col">
                   <h2><span className="pink">{totals[0]}</span> BaeCafe</h2>
@@ -377,8 +381,9 @@ function Stake({account, contracts}) {
                   <h2> <span className="pink">{totals[1]}</span> MEKABAE</h2>
                   {/* <p>{unclaimed[1].toFixed(2)} $BAE unclaimed</p> */}
                   <h2><span className="pink">{totals[2]}</span> PIXELBAES</h2>
+                  <h2><span className="pink">{totals[3]}</span> ELEMENTS</h2>
                   {/* <p>{unclaimed[2].toFixed(2)} $BAE unclaimed</p> */}
-                  <h2><span className="pink">{((unclaimed[0]) + (unclaimed[1]) + (unclaimed[2])).toFixed(2)}</span> $BAE UNCLAIMED*</h2>
+                  <h2><span className="pink">{((unclaimed[0]) + (unclaimed[1]) + (unclaimed[2]) + (unclaimed[3])).toFixed(2)}</span> $BAE UNCLAIMED*</h2>
                   <p>{status}</p>
                   <p className="error">{error}</p>
                   <p className="small">*Your rewards stack and claims are biweekly resetting each month.</p>
