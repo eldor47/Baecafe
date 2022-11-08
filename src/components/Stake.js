@@ -328,7 +328,7 @@ function Stake({account, contracts}) {
           <div className="desc-viewer">
             <div className='desc-top'>
                 <h1 className="pink">STAKING</h1>
-                <p className="stake-description">Earn daily rewards for Bae Cafe, Meka Baes or Pixel Baes in $BAE. Tokens for exclusive marketplace perks.</p>
+                <p className="stake-description">Earn daily rewards for Bae Cafe, Meka Baes, Pixel Baes, or ELEMENTS in $BAE. Tokens for exclusive marketplace perks.</p>
             </div>
             <div className='desc-bottom'>
                 <h2>Current Balance</h2>
