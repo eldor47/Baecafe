@@ -4,10 +4,10 @@ import Gallery  from "./components/Gallery";
 import Stake  from "./components/Stake";
 import Vault  from "./components/Vault";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from './components/Header'
+import Header from './components/Header';
 
 import { ethers } from "ethers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import React from 'react';
 import Marketplace from "./components/Marketplace";

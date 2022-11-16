@@ -2,43 +2,44 @@
   margin: 0;
   padding: 0;
 }
-
 @font-face {
   font-family: 'Articulat.CF-V3';
   src: local('Articulat.CF-V3'), url('./fonts/ArticulatCF/ArticulatCF-Normal.otf') format('opentype');
-  /* other formats include: 'woff2', 'truetype, 'opentype',
-                            'embedded-opentype', and 'svg' */
 }
-
 @font-face {
   font-family: 'Articulat.CF-V3-Bold';
   src: local('Articulat.CF-V3-Bold'), url('./fonts/ArticulatCF/ArticulatCF-DemiBold.otf') format('opentype');
-  /* other formats include: 'woff2', 'truetype, 'opentype',
-                            'embedded-opentype', and 'svg' */
 }
-
 @font-face {
   font-family: 'Articulat.CF-V3-Heavy';
   src: local('Articulat.CF-V3-Bold'), url('./fonts/ArticulatCF/ArticulatCF-Heavy.otf') format('opentype');
-  /* other formats include: 'woff2', 'truetype, 'opentype',
-                            'embedded-opentype', and 'svg' */
 }
 
-
+html{
+  min-height: 100%;
+  scroll-behavior: smooth;
+  width: 100%;
+}
 body {
+  width: 100%;
   font-family: 'Articulat.CF-V3', Consolas, "Courier New", monospace;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
+  background-attachment: fixed;
   /* background-image: url('https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/BAECAFE-background.jpg'); */
   background-image: url('./image/BAECAFE-background.jpg');
   color: #f0f1f3;
   background-color: rgb(60, 60, 60);
+
+}
+h1, h2, h3, h4{
+  font-family: 'Articulat.CF-V3-Heavy', sans-serif;
+      font-size: 2em;
 }
 
 @media only screen and (max-width: 1500px) {
   body {
     background-image: url('./image/BAECAFE-mobilebackground.jpg');
-    overflow: auto;
   }
 }
