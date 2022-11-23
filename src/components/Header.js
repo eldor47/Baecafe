@@ -26,7 +26,7 @@ function Header({ connect, account }) {
           <div className="header-item" onClick={() => handleOnClick('vault')}>Vault</div>
           <div className="header-item" onClick={() => handleOnClick('stake')}>Staking</div>
           <div className="header-item" onClick={() => handleOnClick('marketplace')}>Marketplace</div>
-          <div className="button" onClick={() => handleOnClick('mint')}>SEASON 3</div>
+          
           {account == "" ? (
             <button onClick={connect} className="button-connect">
               CONNECT WALLET

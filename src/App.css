@@ -1,4 +1,4 @@
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 18px;
     background-color: #1d2122;
 }
@@ -45,6 +45,7 @@ a {
     .headerIcon {
       width: 60px;
       height: 60px;
+      cursor: pointer;
     }
     .header-item {
       cursor: pointer;

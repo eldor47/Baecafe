@@ -1,3 +1,8 @@
+.loadingView{
+    padding: 100px 0 0;
+
+}
+
 .lds-heart {
     display: inline-block;
     position: relative;

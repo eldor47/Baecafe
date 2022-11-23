@@ -151,7 +151,11 @@ function Gallery({ connect, account }) {
     console.log(newChecked)
     setChecked(newChecked);
   }; 
-
+  
+  //refresh AOS don't think this is working
+  React.useEffect(() => {
+    AOS.refresh();
+  });
 
   return (
     <div>
@@ -188,23 +192,25 @@ function Gallery({ connect, account }) {
       ) : (
         <div className='gallery'>
           <div className="filter-viewer" data-aos="fade-right">
-            <h1>THE</h1>
-            <h1 className="pink">GALLERY</h1>
-            <div className="filter-box">
-              <div>
+            <h1>THE <br />
+            <span className="blue">GALLERY</span></h1> 
+            <div className="season-filter">
                 <button className="button-connect" onClick={() => setSeason('s1')}>Season 1</button>
                 <button className="button-connect" onClick={() => setSeason('s2')}>Season 2</button>
                 <button className="button-connect" onClick={() => setSeason('s2.5')}>Season 2.5</button>
                 {/* <button className="button-connect" onClick={() => resetFilters()}>Reset Filters</button> */}
               </div>
+            <div className="filter-box">
+             
               {Object.keys(dropdownData).map((key) => (
                 <div key={key}>
                   <div className="filter-item" onClick={() => toggleHiddenFilter(key)}><p>{key}</p><span>+</span></div>
                   <div className="expanded-view" hidden={dropdownStatus[key]}>
                     {dropdownData[key].map(value => (
                       <div className="filter-item expanded" key={value}>
-                        <p>{value}</p>
-                        <input type="checkbox" onChange={()=> handleChange(key, value)}/>
+                        <label><span>{value}</span>
+                          <input type="checkbox" onChange={()=> handleChange(key, value)}/>
+                        </label>
                       </div>
                     ))}
                   </div>
@@ -213,8 +219,12 @@ function Gallery({ connect, account }) {
             </div>
           </div>
           <div className="image-viewer" onScroll={handleScroll} >
-            {view.map((nft) => (
-              <div className='image-holder' key={nft.name} onClick={() => handleAddClick(nft)}>
+            {view.map((nft, index) => (
+              <div className='image-holder' 
+              data-aos="fade-up"
+              // data-aos-delay={index*50+100}
+              data-aos-delay={200}
+              key={nft.name} onClick={() => handleAddClick(nft)}>
                 <img className='image-item' src={nft.external_url}></img>
                 <p className='image-text'>{nft.name}</p>
               </div>

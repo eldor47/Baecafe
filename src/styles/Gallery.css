@@ -1,61 +1,72 @@
-.image-viewer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    column-gap: 20px;
-    row-gap: 40px;
-    height: 83vh;
-    overflow: auto;
-    z-index: 1;
-    flex-basis: 59%;
 
-    margin-top: 10vh;
-
-    scroll-behavior: smooth;
+/*GALLERY PAGE*/
+.gallery {
+    width: 100%;
+    padding: 150px 0 0;
 }
 
+/*LEFT FILTER MENU*/
 .filter-viewer {
-    flex-basis: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    height: 86vh;
-    margin-top: 7vh;
-}
-
-.filter-viewer > h1 {
-    text-align: left;
-    font-family: 'Articulat.CF-V3-Heavy';
-    font-size: 65px;
-    width: 50%;
-}
-
-.filter-box {
     width: 300px;
-    margin-top: 50px;
-    overflow: auto;
-    height: 83vh;
+    position: fixed;
+    top:150px;
+    left: 5%;
 }
-
+    .filter-viewer h1 {
+        font-family: 'Articulat.CF-V3-Heavy', sans-serif;
+        font-size: 65px;
+    }
+    .filter-viewer h1 span{
+        color: #3e8af6;
+    }
+    .filter-box {
+        width: 315px;
+        margin-top: 30px;
+        overflow: auto;
+        height: 40vh;
+        padding-right:5px;
+        cursor: pointer;
+    }
+    .filter-box::-webkit-scrollbar {
+    /*  display: none;*/
+        width: 14px;
+    }
+    .season-filter{
+        padding-top: 30px;
+    }
 .filter-item {
     border-bottom: 1px solid #f0f1f3;
-    height: 30px;
+    height: 35px;
     width: 100%;
     text-align: start;
     vertical-align: bottom;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 16px;
     font-size: 1rem;
 }
+.filter-item.expanded:hover{background: rgba(255,255,255,0.08);}
+.filter-item:first-of-type{padding-top: 5px;}
+.filter-item label{width: 100%;cursor: pointer;padding: 10px 0;}
+.filter-item input{float: right;cursor: pointer;margin-right: 15px;}
 
 .expanded {
     border-bottom: none;
     font-size: 14px;
 }
 
+
+/*RIGHT SECTION, DISPLAYS LIST OF NFTS*/ 
+.image-viewer {
+    width: calc(90% - 300px);
+    float: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    row-gap: 40px;
+}
 .loadingView {
     width: 100%;
     display: flex;
@@ -64,20 +75,16 @@
     align-items: center;
     flex-wrap: wrap;
     text-align: center;
-    height: 93vh;
+    height: 80vh;
 }
 
-.pink {
-    color: #ea00d9;
-}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .image-viewer::-webkit-scrollbar {
     display: none;
 }
 
-.filter-box::-webkit-scrollbar {
-    display: none;
-}
+
 .image-item {
     width: 200px;
     border-radius: 3px;
@@ -213,13 +220,9 @@
     z-index: 2;
 }
 
-.gallery {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
 
-@media only screen and (max-width: 1080px) {
+
+/*@media only screen and (max-width: 1080px) {
     .image-viewer {
         display: flex;
         flex-wrap: wrap;
@@ -246,7 +249,6 @@
         margin-top: 3vh;
         margin-bottom: 5vh;
     }
-
     .modal {
         top: 100%;
         height: 800px;
@@ -287,4 +289,4 @@
     
     
   }
-
+*/

@@ -95,7 +95,8 @@
 }
 @media(max-width: 479px){
     .left .banner-text h1 { font-size: 40px; }
-    .left .banner-text p { font-size: 14px; }
+    .left .banner-text p { font-size: 13px; }
+    .mobilevid{max-width: 300px;}
 }
 
 
@@ -169,13 +170,23 @@
         overflow: hidden;
     }
 
-
-
-
 }
 
+@media(max-width: 800px) {
+    .roadmap-img{
+        padding: 0 30px;
 
-
+    }
+}
+@media(max-width: 575px) {
+    .roadmap-img{padding: 30px 10%;width: 80%;max-width: 350px;}
+    .roadmap-panel{flex-direction: column;}
+    .roadmap-panel:nth-of-type(odd){flex-direction: column-reverse;}
+    .roadmap-desc{
+        max-width: 80%;
+        padding: 0px 10%;
+    }
+}
 
 
 /*TEAM*/
@@ -185,7 +196,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 200px;
+    margin-bottom: 100px;
 }
 
 .team-holder {
@@ -275,5 +286,7 @@
         width: 100%;
         margin-left: 0;
     }
+    .team {margin-bottom: 0;}
 
   }
+

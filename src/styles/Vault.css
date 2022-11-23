@@ -1,3 +1,12 @@
+.vault-page{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 150px 0 0;
+
+}
+
+
 .white{
     color: #FFFFFF;
 }
@@ -10,11 +19,7 @@
     text-align: center;
 }
 
-.vault-page{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 
 .vault{
     flex-basis: 40%;
