@@ -190,7 +190,13 @@ function Gallery({ connect, account }) {
           <Loading></Loading>
         </div>
       ) : (
-        <div className='gallery'>
+
+        <div className='gallery clearfix'>
+          <input id="filter-menu__toggle" type="checkbox"  />
+          <label className="filter-menu__btn" htmlFor="filter-menu__toggle">
+            <span></span>
+          </label>
+          <div className="filter-viewer-container">
           <div className="filter-viewer" data-aos="fade-right">
             <h1>THE <br />
             <span className="blue">GALLERY</span></h1> 
@@ -201,6 +207,7 @@ function Gallery({ connect, account }) {
                 {/* <button className="button-connect" onClick={() => resetFilters()}>Reset Filters</button> */}
               </div>
             <div className="filter-box">
+
              
               {Object.keys(dropdownData).map((key) => (
                 <div key={key}>
@@ -218,7 +225,13 @@ function Gallery({ connect, account }) {
               ))}
             </div>
           </div>
-          <div className="image-viewer" onScroll={handleScroll} >
+          </div>
+          <div className="mobile-title">
+            <h1>THE <br />
+            <span className="blue">GALLERY</span></h1> 
+          </div>
+          <div className="image-viewer clearfix" onScroll={handleScroll} >
+            
             {view.map((nft, index) => (
               <div className='image-holder' 
               data-aos="fade-up"

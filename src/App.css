@@ -15,6 +15,11 @@
   background-color: #444;
 }
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 
 .page {
   display: flex;
@@ -188,9 +193,9 @@ a {
 /*MENU + HAMBURGER*/
 a.logo{
   position: fixed;
-  top: 20px;
+  top: 12px;
   left: 20px;
-  z-index: 9;
+  z-index: 10;
 }
 #menu__btn{
   display: none;
@@ -246,7 +251,7 @@ a.logo{
     width: 30px;
     height: 30px;
     cursor: pointer;
-    z-index: 9;
+    z-index: 10;
   }
   .menu__btn > span,
   .menu__btn > span::before,
@@ -270,14 +275,26 @@ a.logo{
   .menu__box {
     display: block;
     position: fixed;
-    top: -100%;
+    top: -200%;
     margin: 0;
     transition-duration: .25s;
+    z-index: 9;
   }
    .menu__box .header-item{
     text-align: center;
     padding: 20px;
     display: block;
+   }
+
+   body:before{
+    content: '';
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 95px;
+    background-color: #1d2122;
+    z-index: 8;
    }
   
 }
