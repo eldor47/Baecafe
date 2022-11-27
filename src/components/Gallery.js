@@ -158,19 +158,19 @@ function Gallery({ connect, account }) {
   });
 
   return (
-    <div>
+    <div className="gallery-page">
       {modalOpen ? (
         <div className="modal-bg" data-aos="fade-in">
           <OutsideClickHandler onOutsideClick={() => { handleClose(false) }}>
             <div className="modal">
-              <div className="modal-header" onClick={() => {handleClose(false)}}>X</div>
+              <div className="modal-header" onClick={() => {handleClose(false)}}><span className='close-modal'></span></div>
               <div className="modal-left">
                 <img className='modal-image-item' src={selectedNft.external_url} alt={selectedNft.name}></img>
               </div>
               <div className="modal-right">
                 <div className="modal-right-header">
                   <p>{data.name}</p>
-                  <a href={selectedNft.os_url}><img alt="Opensea Link" src="./image/OpenseaIcon.png" width="40" height="40" /></a>
+                  <a className="nft-os-link" target="_blank" href={selectedNft.os_url}><img alt="Opensea Link" src="./image/OpenseaIcon.png" width="40" height="40" /></a>
                 </div>
                 <h1>{selectedNft.name}</h1>
                 {selectedNft.attributes.map((attribute, index) => (
