@@ -1,5 +1,5 @@
 import "../styles/Gallery.css";
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from "axios";
 
 import OutsideClickHandler from 'react-outside-click-handler';
@@ -7,8 +7,9 @@ import Loading from "./Loading";
 
 import AOS from 'aos'
 
+const pageSize = 100;
 
-function Gallery({ connect, account }) {
+function Gallery({ bottom }) {
 
   const [isLoading, setIsLoading] = React.useState(true);
   const [data, setData] = React.useState([]);
@@ -22,7 +23,7 @@ function Gallery({ connect, account }) {
   const [checked, setChecked] = React.useState({}); 
   const [season, setSeason] = React.useState('s2'); 
 
-  const [imageCount, setImageCount] = React.useState(100);
+  const [imageCount, setImageCount] = React.useState(pageSize);
 
   const handleAddClick = (selectedNft) => {
     openModal(true);
@@ -37,21 +38,22 @@ function Gallery({ connect, account }) {
   }, [])
 
   React.useEffect(() => {
-    let url = process.env.REACT_APP_BASE_URI + '/gallery';
+    let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
     let seasons = {
       's1': 1000,
       's2': 2222,
-      's2.5': 10000
+      's2.5': 10000,
+      's3': 2500
     }
     
-    axios.post(url, { season: season, page: 1, batchSize: 100 }).then((response) => {
+    axios.post(url, { season: season, page: 1, batchSize: pageSize }).then((response) => {
       // Set data and viewable data for scrollable component
       setData(response.data)
       setView(response.data.metadata.slice(1, imageCount))
       setPage(page+1)
     });
 
-    url = process.env.REACT_APP_BASE_URI + '/dropdowns';
+    url = process.env.REACT_APP_BASE_URI_NEW + '/dropdowns';
     axios.post(url, { season: season }).then((response) => {
       setDropdownData(response.data.dropdowns)
 
@@ -77,13 +79,36 @@ function Gallery({ connect, account }) {
     setView(newView)
   }, [checked]);
 
+  useEffect(() => {
+    console.log('bottom')
+    // GRAB MORE DATA
+    let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
+    axios.post(url, { season: season, page: page, batchSize: pageSize }).then((response) => {
+      // Set data and viewable data for scrollable component
+      var newMeta = [...data.metadata, ...response.data.metadata].sort((a,b) => {
+        return a.name.split('#')[1] - b.name.split('#')[1]
+      })
+
+      console.log(newMeta.length)
+      response.data.metadata = newMeta
+      setData(response.data)
+      setView(response.data.metadata.slice(1, imageCount+pageSize))
+      setPage(page+1)
+    });
+    var newView = getFilterData()?.slice(0, imageCount+pageSize)
+    setView(newView)
+    setImageCount(imageCount + pageSize)
+  }, [bottom])
+
   const handleScroll = async (e) => {
     const bottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight;
+    console.log(e.target.scrollHeight - e.target.scrollTop)
+    console.log(e.target.clientHeight)
     if (bottom) { 
       console.log('bottom')
       // GRAB MORE DATA
-      let url = process.env.REACT_APP_BASE_URI + '/gallery';
-      axios.post(url, { season: season, page: page, batchSize: 100 }).then((response) => {
+      let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
+      axios.post(url, { season: season, page: page, batchSize: pageSize }).then((response) => {
         // Set data and viewable data for scrollable component
         var newMeta = [...data.metadata, ...response.data.metadata].sort((a,b) => {
           return a.name.split('#')[1] - b.name.split('#')[1]
@@ -92,12 +117,12 @@ function Gallery({ connect, account }) {
         console.log(newMeta.length)
         response.data.metadata = newMeta
         setData(response.data)
-        setView(response.data.metadata.slice(1, imageCount+100))
+        setView(response.data.metadata.slice(1, imageCount+pageSize))
         setPage(page+1)
       });
-      var newView = getFilterData()?.slice(0, imageCount+100)
+      var newView = getFilterData()?.slice(0, imageCount+pageSize)
       setView(newView)
-      setImageCount(imageCount + 100)
+      setImageCount(imageCount + pageSize)
     }
   }
 
