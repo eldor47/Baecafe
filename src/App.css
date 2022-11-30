@@ -216,6 +216,10 @@ a.logo{
     text-align: center;
     padding: 30px 0;
   }
+  .header button.button-connect{
+    margin:20px auto;  
+    display: block;
+  }
 
   .header-right {
     margin: 0 auto;
