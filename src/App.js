@@ -18,6 +18,7 @@ function App() {
   const [account, setAccount] = useState("");
   const [signer, setSigner] = useState(null);
   const [contracts, setContracts] = useState([]);
+  const [bottom, setBottom] = useState(false)
 
   const connect = async () => {
     if (typeof window.ethereum !== "undefined") {
@@ -30,6 +31,35 @@ function App() {
       setAccount(accounts[0]);
     } else {
       console.log("Please install metamask.");
+    }
+  };
+
+  function isBottom(el) {
+    return el.getBoundingClientRect().bottom <= window.innerHeight+50;
+  }
+
+  function debounce(cb, delay = 1000) {
+    let timeout
+    return (...args) => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        cb(...args)
+      }, delay)
+    }
+  }
+  
+  useEffect(() => {
+    document.addEventListener('scroll', debounce(trackScrolling, 300));
+  }, [])
+
+  const trackScrolling = () => {
+    console.log('Bottom')
+    const wrappedElement = document.body;
+    if (isBottom(wrappedElement)) {
+      console.log('body bottom reached');
+      setBottom(true)
+    } else {
+      setBottom(false)
     }
   };
 
@@ -47,7 +77,7 @@ function App() {
       <Header connect={connect} account={account} />
        <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery" element={<Gallery bottom={bottom}/>} />
           <Route path="/stake" element={<Stake account={account} contracts={contracts}/>} />
           <Route path="/marketplace" element={<Marketplace account={account} contracts={contracts}/>} />
           <Route path="/vault" element={<Vault />} />
