@@ -86,6 +86,14 @@
         border-radius: 3px;
     }
 
+    .page {
+        background-color: #363d3e;
+        padding: 10px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .image-text {
         text-align: center;
     }
@@ -103,7 +111,6 @@
         transition-timing-function: ease-in;
         cursor: pointer;
     }
-
 
 
 /*FILTER MENU BUTTON HIDDEN WHEN NOT MOBILE*/

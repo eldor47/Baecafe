@@ -7,21 +7,29 @@ import Loading from "./Loading";
 
 import AOS from 'aos'
 
-const pageSize = 100;
+const pageSize = 35;
+let seasons = {
+  's1': 1000,
+  's2': 2222,
+  's2.5': 10000,
+  's3': 2500
+}
 
-function Gallery({ bottom }) {
+function Gallery() {
 
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isGalleryLoading, setIsGalleryLoading] = React.useState(true);
   const [data, setData] = React.useState([]);
   const [dropdownData, setDropdownData] = React.useState([]);
   const [dropdownStatus, setDropdownStatus] = React.useState([]);
   const [view, setView] = React.useState([]);
   const [page, setPage] = React.useState(1);
+  const [total, setTotal] = React.useState(2500);
 
   const [modalOpen, openModal] = React.useState(false);
   const [selectedNft, setNft] = React.useState(false);
   const [checked, setChecked] = React.useState({}); 
-  const [season, setSeason] = React.useState('s2'); 
+  const [season, setSeason] = React.useState('s3'); 
 
   const [imageCount, setImageCount] = React.useState(pageSize);
 
@@ -39,18 +47,48 @@ function Gallery({ bottom }) {
 
   React.useEffect(() => {
     let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
-    let seasons = {
-      's1': 1000,
-      's2': 2222,
-      's2.5': 10000,
-      's3': 2500
-    }
     
-    axios.post(url, { season: season, page: 1, batchSize: pageSize }).then((response) => {
+    axios.post(url, { season: season, page: page, batchSize: pageSize, filter: checked }).then((response) => {
       // Set data and viewable data for scrollable component
+      setIsGalleryLoading(true)
+      setTimeout(() => {
+        for(var item of response.data.metadata) {
+          var attributes = []
+          for (const [key, value] of Object.entries(item)) {
+            var na = ["os_url", "external_url", "name", "image", "season"]
+            if(!na.includes(key))
+              attributes.push({trait_type: key, value: value})
+          }
+          item.attributes = attributes
+        }
+        setData(response.data)
+        setView(response.data.metadata.slice(0, imageCount))
+        setIsGalleryLoading(false)
+        setTotal(response.data.total)
+      }, "2 second")
+    });
+  }, [page])
+
+  React.useEffect(() => {
+    let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
+    setIsGalleryLoading(true)
+    setChecked({})
+    
+    axios.post(url, { season: season, page: 1, batchSize: pageSize, filter: checked }).then((response) => {
+      // Set data and viewable data for scrollable component
+      for(var item of response.data.metadata) {
+        var attributes = []
+        for (const [key, value] of Object.entries(item)) {
+          var na = ["os_url", "external_url", "name", "image", "season"]
+          if(!na.includes(key))
+            attributes.push({trait_type: key, value: value})
+        }
+        item.attributes = attributes
+      }
       setData(response.data)
-      setView(response.data.metadata.slice(1, imageCount))
-      setPage(page+1)
+      setView(response.data.metadata.slice(0, imageCount))
+      setIsGalleryLoading(false)
+      setTotal(response.data.total)
     });
 
     url = process.env.REACT_APP_BASE_URI_NEW + '/dropdowns';
@@ -74,67 +112,37 @@ function Gallery({ bottom }) {
   }, [data]);
 
   React.useEffect(() => {
-    // Trigger refilter of data here
-    var newView = getFilterData()?.slice(0, imageCount)
-    setView(newView)
+    let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
+
+    if(page != 1){
+      setPage(1)
+      return
+    }
+    
+    axios.post(url, { season: season, page: page, batchSize: pageSize, filter: checked }).then((response) => {
+      // Set data and viewable data for scrollable component
+      setIsGalleryLoading(true)
+      setTimeout(() => {
+        for(var item of response.data.metadata) {
+          var attributes = []
+          for (const [key, value] of Object.entries(item)) {
+            var na = ["os_url", "external_url", "name", "image", "season"]
+            if(!na.includes(key))
+              attributes.push({trait_type: key, value: value})
+          }
+          item.attributes = attributes
+        }
+        setData(response.data)
+        setView(response.data.metadata.slice(0, imageCount))
+        setIsGalleryLoading(false)
+        setTotal(response.data.total)
+      }, "2 second")
+    });
   }, [checked]);
 
-  useEffect(() => {
-    console.log('bottom')
-    // GRAB MORE DATA
-    let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
-    axios.post(url, { season: season, page: page, batchSize: pageSize }).then((response) => {
-      // Set data and viewable data for scrollable component
-      var newMeta = [...data.metadata, ...response.data.metadata].sort((a,b) => {
-        return a.name.split('#')[1] - b.name.split('#')[1]
-      })
-
-      console.log(newMeta.length)
-      response.data.metadata = newMeta
-      setData(response.data)
-      setView(response.data.metadata.slice(1, imageCount+pageSize))
-      setPage(page+1)
-    });
-    var newView = getFilterData()?.slice(0, imageCount+pageSize)
-    setView(newView)
-    setImageCount(imageCount + pageSize)
-  }, [bottom])
-
-  const handleScroll = async (e) => {
-    const bottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight;
-    console.log(e.target.scrollHeight - e.target.scrollTop)
-    console.log(e.target.clientHeight)
-    if (bottom) { 
-      console.log('bottom')
-      // GRAB MORE DATA
-      let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
-      axios.post(url, { season: season, page: page, batchSize: pageSize }).then((response) => {
-        // Set data and viewable data for scrollable component
-        var newMeta = [...data.metadata, ...response.data.metadata].sort((a,b) => {
-          return a.name.split('#')[1] - b.name.split('#')[1]
-        })
-
-        console.log(newMeta.length)
-        response.data.metadata = newMeta
-        setData(response.data)
-        setView(response.data.metadata.slice(1, imageCount+pageSize))
-        setPage(page+1)
-      });
-      var newView = getFilterData()?.slice(0, imageCount+pageSize)
-      setView(newView)
-      setImageCount(imageCount + pageSize)
-    }
-  }
-
   const resetFilters = () => {
+    // This doesnt work because react wont let me uncheck the boxes...
     setChecked({})
-    var status = {...dropdownData}
-    Object.keys(status).forEach(key => {
-      status[key] = true;
-    });
-    console.log(dropdownData)
-    console.log(status)
-    setDropdownStatus(status)
   }
 
   const getFilterData = () => {
@@ -226,14 +234,13 @@ function Gallery({ bottom }) {
             <h1>THE <br />
             <span className="blue">GALLERY</span></h1> 
             <div className="season-filter">
-                <button className="button-connect" onClick={() => setSeason('s1')}>Season 1</button>
-                <button className="button-connect" onClick={() => setSeason('s2')}>Season 2</button>
-                <button className="button-connect" onClick={() => setSeason('s2.5')}>Season 2.5</button>
+                <button className="button-connect" onClick={() => setSeason('s1')}>S1</button>
+                <button className="button-connect" onClick={() => setSeason('s2')}>S2</button>
+                <button className="button-connect" onClick={() => setSeason('s2.5')}>S2.5</button>
+                <button className="button-connect" onClick={() => setSeason('s3')}>S3</button>
                 {/* <button className="button-connect" onClick={() => resetFilters()}>Reset Filters</button> */}
               </div>
             <div className="filter-box">
-
-             
               {Object.keys(dropdownData).map((key) => (
                 <div key={key}>
                   <div className="filter-item" onClick={() => toggleHiddenFilter(key)}><p>{key}</p><span>+</span></div>
@@ -255,8 +262,14 @@ function Gallery({ bottom }) {
             <h1>THE <br />
             <span className="blue">GALLERY</span></h1> 
           </div>
-          <div className="image-viewer clearfix" onScroll={handleScroll} >
-            
+          {isGalleryLoading ? <div className="image-viewer clearfix"><Loading></Loading></div> :
+          <div className="image-viewer clearfix" >
+            {page === 1 ? <></> :
+            <div hidden={page === 1} className='image-holder page'>
+              <p>Page {page} of {Math.round(total / pageSize)}</p>
+              <button onClick={() => setPage(page-1)} className='button-connect'>PREVIOUS PAGE</button>
+            </div>
+            }
             {view.map((nft, index) => (
               <div className='image-holder' 
               data-aos="fade-up"
@@ -267,8 +280,15 @@ function Gallery({ bottom }) {
                 <p className='image-text'>{nft.name}</p>
               </div>
             ))}
+            {page*pageSize >= total ? <></> :
+            <div className='image-holder page'>
+              <p>Page {page} of {Math.round(total / pageSize)}</p>
+              <button  onClick={() => setPage(page+1)} className='button-connect'>NEXT PAGE</button>
+            </div>
+            }
             <h1 hidden={view.length !== 0}>No results found.</h1>
           </div>
+          }
         </div>
       )}
     </div>
