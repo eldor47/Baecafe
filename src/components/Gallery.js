@@ -7,7 +7,7 @@ import Loading from "./Loading";
 
 import AOS from 'aos'
 
-const pageSize = 35;
+const pageSize = 36;
 let seasons = {
   's1': 1000,
   's2': 2222,
@@ -185,10 +185,6 @@ function Gallery() {
     setChecked(newChecked);
   }; 
   
-  //refresh AOS don't think this is working
-  React.useEffect(() => {
-    AOS.refresh();
-  });
 
   return (
     <div className="gallery-page">
@@ -262,14 +258,9 @@ function Gallery() {
             <h1>THE <br />
             <span className="blue">GALLERY</span></h1> 
           </div>
-          {isGalleryLoading ? <div className="image-viewer clearfix"><Loading></Loading></div> :
+          {isGalleryLoading ? <div className="loadingView g"><Loading></Loading></div> :
           <div className="image-viewer clearfix" >
-            {page === 1 ? <></> :
-            <div hidden={page === 1} className='image-holder page'>
-              <p>Page {page} of {Math.round(total / pageSize)}</p>
-              <button onClick={() => setPage(page-1)} className='button-connect'>PREVIOUS PAGE</button>
-            </div>
-            }
+            
             {view.map((nft, index) => (
               <div className='image-holder' 
               data-aos="fade-up"
@@ -280,13 +271,22 @@ function Gallery() {
                 <p className='image-text'>{nft.name}</p>
               </div>
             ))}
-            {page*pageSize >= total ? <></> :
-            <div className='image-holder page'>
-              <p>Page {page} of {Math.round(total / pageSize)}</p>
-              <button  onClick={() => setPage(page+1)} className='button-connect'>NEXT PAGE</button>
-            </div>
-            }
+            
             <h1 hidden={view.length !== 0}>No results found.</h1>
+            <div className="paginate-container">
+
+            <div hidden={page === 1} className='paginate'>         
+              <button disabled={page === 1} onClick={() => setPage(page-1)} className='prev'>&lt;</button>
+            </div>
+            <p>Page {page} of {Math.round(total / pageSize)}</p>
+            
+            <div className='paginate'>
+            {page*pageSize >= total ? <></> :
+              <button onClick={() => setPage(page+1)} className='next'>&gt;</button>
+            }
+            </div>
+            
+            </div>
           </div>
           }
         </div>
