@@ -47,7 +47,7 @@ function App() {
       <Header connect={connect} account={account} />
        <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/gallery" element={<Gallery/>} />
           <Route path="/stake" element={<Stake account={account} contracts={contracts}/>} />
           <Route path="/marketplace" element={<Marketplace account={account} contracts={contracts}/>} />
           <Route path="/vault" element={<Vault />} />
