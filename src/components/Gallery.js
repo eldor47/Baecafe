@@ -32,6 +32,7 @@ function Gallery() {
   const [season, setSeason] = React.useState('s3'); 
 
   const [imageCount, setImageCount] = React.useState(pageSize);
+  const [imageLoading, setImageLoading] = React.useState(true);
 
   const handleAddClick = (selectedNft) => {
     openModal(true);
@@ -48,9 +49,10 @@ function Gallery() {
   React.useEffect(() => {
     let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
     
+    // Set data and viewable data for scrollable component
+    setIsGalleryLoading(true)
+    setImageLoading(true)
     axios.post(url, { season: season, page: page, batchSize: pageSize, filter: checked }).then((response) => {
-      // Set data and viewable data for scrollable component
-      setIsGalleryLoading(true)
       setTimeout(() => {
         for(var item of response.data.metadata) {
           var attributes = []
@@ -72,23 +74,25 @@ function Gallery() {
   React.useEffect(() => {
     let url = process.env.REACT_APP_BASE_URI_NEW + '/gallery';
     setIsGalleryLoading(true)
+    setImageLoading(true)
     setChecked({})
-    
-    axios.post(url, { season: season, page: 1, batchSize: pageSize, filter: checked }).then((response) => {
-      // Set data and viewable data for scrollable component
-      for(var item of response.data.metadata) {
-        var attributes = []
-        for (const [key, value] of Object.entries(item)) {
-          var na = ["os_url", "external_url", "name", "image", "season"]
-          if(!na.includes(key))
-            attributes.push({trait_type: key, value: value})
+
+    axios.post(url, { season: season, page: page, batchSize: pageSize, filter: checked }).then((response) => {
+      setTimeout(() => {
+        for(var item of response.data.metadata) {
+          var attributes = []
+          for (const [key, value] of Object.entries(item)) {
+            var na = ["os_url", "external_url", "name", "image", "season"]
+            if(!na.includes(key))
+              attributes.push({trait_type: key, value: value})
+          }
+          item.attributes = attributes
         }
-        item.attributes = attributes
-      }
-      setData(response.data)
-      setView(response.data.metadata.slice(0, imageCount))
-      setIsGalleryLoading(false)
-      setTotal(response.data.total)
+        setData(response.data)
+        setView(response.data.metadata.slice(0, imageCount))
+        setIsGalleryLoading(false)
+        setTotal(response.data.total)
+      }, "2 second")
     });
 
     url = process.env.REACT_APP_BASE_URI_NEW + '/dropdowns';
@@ -119,9 +123,10 @@ function Gallery() {
       return
     }
     
+    // Set data and viewable data for scrollable component
+    setIsGalleryLoading(true)
+    setImageLoading(true)
     axios.post(url, { season: season, page: page, batchSize: pageSize, filter: checked }).then((response) => {
-      // Set data and viewable data for scrollable component
-      setIsGalleryLoading(true)
       setTimeout(() => {
         for(var item of response.data.metadata) {
           var attributes = []
@@ -141,26 +146,7 @@ function Gallery() {
   }, [checked]);
 
   const resetFilters = () => {
-    // This doesnt work because react wont let me uncheck the boxes...
     setChecked({})
-  }
-
-  const getFilterData = () => {
-    var keys = Object.keys(checked)
-    console.log(checked)
-    var newData = data.metadata
-    for(var key of keys) {
-      newData = newData.filter(item => {
-        var fil = false
-        var value = item.attributes.find(({ trait_type }) => trait_type === key)?.value
-        if(checked[key].includes(value)){
-          fil = true
-        }
-
-        return fil
-      })
-    }
-    return newData
   }
 
   const toggleHiddenFilter = (key) => {
@@ -258,7 +244,10 @@ function Gallery() {
             <h1>THE <br />
             <span className="blue">GALLERY</span></h1> 
           </div>
-          {isGalleryLoading ? <div className="loadingView g"><Loading></Loading></div> :
+          {isGalleryLoading ?
+          <div className="loadingView g">
+            <Loading></Loading>
+          </div> :
           <div className="image-viewer clearfix" >
             
             {view.map((nft, index) => (
@@ -267,7 +256,11 @@ function Gallery() {
               // data-aos-delay={index*50+100}
               data-aos-delay={200}
               key={nft.name} onClick={() => handleAddClick(nft)}>
-                <img className='image-item' src={nft.external_url}></img>
+                <img 
+                  className={imageLoading ? 'image-item image-loading' : 'image-item'}
+                  src={imageLoading ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjcHFx+Q8AA2gBzINF/IQAAAAASUVORK5CYII=' : nft.external_url}
+                  onLoad={() => setImageLoading(false)}>
+                </img>
                 <p className='image-text'>{nft.name}</p>
               </div>
             ))}
@@ -278,12 +271,10 @@ function Gallery() {
             <div hidden={page === 1} className='paginate'>         
               <button disabled={page === 1} onClick={() => setPage(page-1)} className='prev'>&lt;</button>
             </div>
-            <p>Page {page} of {Math.round(total / pageSize)}</p>
+            <p>Page {page} of {Math.ceil(total / pageSize)}</p>
             
             <div className='paginate'>
-            {page*pageSize >= total ? <></> :
-              <button onClick={() => setPage(page+1)} className='next'>&gt;</button>
-            }
+              <button disabled={page*pageSize >= total} onClick={() => setPage(page+1)} className='next'>&gt;</button>
             </div>
             
             </div>

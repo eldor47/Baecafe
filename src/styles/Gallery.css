@@ -92,6 +92,9 @@
         transition-timing-function: ease-out;
         z-index: 1;
     }
+    .border {
+        border: 1px solid red;
+    }
     .image-holder:nth-child(6n+1){margin-left: 0;}
     .image-holder:nth-child(6n){margin-right: 0;}
 
