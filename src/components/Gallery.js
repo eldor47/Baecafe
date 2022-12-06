@@ -238,11 +238,9 @@ function Gallery() {
                 <button className="button-connect" onClick={() => setSeason('s2')}>S2</button>
                 <button className="button-connect" onClick={() => setSeason('s2.5')}>S2.5</button>
                 <button className="button-connect" onClick={() => setSeason('s3')}>S3</button>
-                <button className="button-connect" onClick={() => resetFilters()}>Reset Filters</button>
+                {/* <button className="button-connect" onClick={() => resetFilters()}>Reset Filters</button> */}
               </div>
             <div className="filter-box">
-
-             
               {Object.keys(dropdownData).map((key) => (
                 <div key={key}>
                   <div className="filter-item" onClick={() => toggleHiddenFilter(key)}><p>{key}</p><span>+</span></div>
