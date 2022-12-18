@@ -196,7 +196,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 0;
 }
 
 .team-holder {
@@ -254,7 +254,9 @@
     padding: 0 0 50px;
 }
 
-
+.founder{text-align:center;margin-bottom: 200px;}
+.founder img{border-radius:50%;width: 150px;}
+.founder .twitter-icon{width: 20px;position: relative;bottom: -3px;}
 
 @media only screen and (max-width: 1080px) {
     .right {

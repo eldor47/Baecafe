@@ -160,6 +160,12 @@ function Home() {
                             </div>
                         </div>
                     </div>
+                    <div className="founder" data-aos="fade-up" data-aos-delay="50">
+                        <a href="https://twitter.com/habits">
+                            <img src="./image/founder.jpg"/>
+                        </a>
+                        <p>BaeCafe was founded by <a href="https://twitter.com/habits">@habits <img className='twitter-icon' src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/twitter.svg"/></a></p>
+                    </div>
                 </div>
 
         </div>)
