@@ -232,19 +232,12 @@
 .team-img {
     width: 100%;
     border-radius: 2px;
-
-    border: none;
-    transition: border 500ms;
-    transition-timing-function: ease-out;
 }
-
 .team-img:hover {
     width: 100%;
     border-radius: 2px;
-
-    border: 1px solid #f0f1f3;
-    transition: border 500ms;
-    transition-timing-function: ease-in;
+    opacity: .8;
+    transition: opacity .3s;
 }
 .team h2 {
     width: 100%;

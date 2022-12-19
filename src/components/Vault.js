@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import "../styles/Vault.css";
 import OutsideClickHandler from 'react-outside-click-handler';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+// import GridList from '@material-ui/core/GridList';
+// import GridListTile from '@material-ui/core/GridListTile';
 import AOS from 'aos'
 
 function Vault() {
@@ -59,7 +59,10 @@ function Vault() {
                 <div className="modal-bg" data-aos="fade-in">
                 <OutsideClickHandler onOutsideClick={() => { handleClose(false) }}>
                     <div className="vault-modal">
-                    <div className="modal-header" onClick={() => {handleClose(false)}}>X</div>
+                    <div className="modal-header" onClick={() => {handleClose(false)}}>
+                        <span className="close-modal"></span>
+
+                    </div>
                     <div hidden={selectedVideo} className="modal-main" style={{backgroundImage: "url(" + selectedImage.link + ")",
                             backgroundPosition: 'center',
                             backgroundSize: 'contain',
@@ -72,13 +75,16 @@ function Vault() {
                     </div>
                     <div className="descriptionHolder" hidden={selectedVideo}>
                         <p className="imageDesc">{selectedImage.description}</p>
-                        <p></p>
+                        
                         <a href={selectedImage.fdlink} target="_blank" rel="noopener noreferrer">{selectedImage.fdlink}</a>
+                        <a className="fdn-circle" href={selectedImage.fdlink}><img src="../image/foundation-logo.svg" /></a>
+
                     </div>
                     <div className="descriptionHolder" hidden={selectedImage}>
                         <p className="imageDesc">{selectedVideo.description}</p>
-                        <p></p>
+                        
                         <a href={selectedVideo.fdlink} target="_blank" rel="noopener noreferrer">{selectedVideo.fdlink}</a>
+                        <a className="fdn-circle" href={selectedVideo.fdlink}><img src="../image/foundation-logo.svg" /></a>
                     </div>
                     </div>
                 </OutsideClickHandler>
@@ -91,57 +97,80 @@ function Vault() {
                     })} */}
                     <h1 className="white">COMMUNITY</h1>
                     <h1 className="blue" style={{'padding-bottom': '20px'}}>VAULT</h1>
-                    <p>Baecafe's collection of art made by the</p>
-                    <p>talented people of this community</p>
+                    <p>Baecafe's collection of art made by the talented people of this community</p>
                 </div>
                 <div className="vault-viewer">
-                    <GridList className="gridList" cellHeight={500} cols={3}>
+                    <div className="gridList">
                         {/* <video autoPlay loop muted height={300} width={400} onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4", description: beachDesc, fdlink: "https://foundation.app/@baecafe/cafe/1"})}>
                             <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4" type="video/mp4"/>
                         </video> */}
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/benangbaja.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/benangbaja.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/benangbaja.png", description: banangbajaDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/4"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/helena.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/helena.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/helena.png", description: helenaDesc, fdlink: "https://foundation.app/@baecafe/bae/5"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/hope.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/hope.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/hope.png", description: hopeDesc, fdlink: "https://foundation.app/@baecafe/bae/6"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily.png", description: lewdlilyDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/2"})} alt="" />
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily69.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily69.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily69.png", description: lewdlily69Desc, fdlink: "https://foundation.app/@baecafe/bae/1"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/madnokof.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/madnokof.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/madnokof.png", description: madnokofDesc, fdlink: "https://foundation.app/@baecafe/bae/4"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nunu.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nunu.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nunu.png", description: nunuDesc, fdlink: "https://foundation.app/@baecafe/bae/2"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sasha.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sasha.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sasha.png", description: sashaDesc, fdlink: "https://foundation.app/@baecafe/bae/9"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/suki.png" cols={1}>
-                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/suki.png" onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/suki.png", description: sukiDesc, fdlink: "https://foundation.app/@baecafe/bae/3"})} alt=""/>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4" cols={3}>
-                            <video height={510} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4", description: beachDesc, fdlink: "https://foundation.app/@baecafe/cafe/1"})}>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/benangbaja.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/benangbaja.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/benangbaja.png", 
+                                    description: banangbajaDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/4"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/helena.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/helena.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/helena.png", 
+                                    description: helenaDesc, fdlink: "https://foundation.app/@baecafe/bae/5"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/hope.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/hope.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/hope.png", 
+                                    description: hopeDesc, fdlink: "https://foundation.app/@baecafe/bae/6"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily.png", 
+                                    description: lewdlilyDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/2"})} alt="" />
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily69.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily69.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/lewdlily69.png", 
+                                    description: lewdlily69Desc, fdlink: "https://foundation.app/@baecafe/bae/1"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/madnokof.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/madnokof.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/madnokof.png", 
+                                    description: madnokofDesc, fdlink: "https://foundation.app/@baecafe/bae/4"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nunu.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nunu.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nunu.png", 
+                                    description: nunuDesc, fdlink: "https://foundation.app/@baecafe/bae/2"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sasha.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sasha.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sasha.png", 
+                                    description: sashaDesc, fdlink: "https://foundation.app/@baecafe/bae/9"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/suki.png">
+                            <img src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/suki.png" onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/suki.png", 
+                                    description: sukiDesc, fdlink: "https://foundation.app/@baecafe/bae/3"})} alt=""/>
+                        </div>
+                        <div className="vault-item c-3" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4">
+                            <video height={510} autoPlay loop muted onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4", 
+                                    description: beachDesc, fdlink: "https://foundation.app/@baecafe/cafeart/1"})}>
                                 <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nft.mp4" type="video/mp4"/>
                             </video>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4" cols={2}>
-                            <video height={575} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4", description: sayakaDesc, fdlink: "https://foundation.app/@baecafe/bae/7"})}>
+                        </div>
+                        <div className="vault-item c-2" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4">
+                            <video height={575} autoPlay loop muted onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4", 
+                                    description: sayakaDesc, fdlink: "https://foundation.app/@baecafe/bae/7"})}>
                                 <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/sayaka.mp4" type="video/mp4"/>
                             </video>
-                        </GridListTile>
-                        <GridListTile key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4" cols={1}>
-                            <video height={500} autoPlay loop muted onClick={() => handleAddClick({link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4", description: nekoboxDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/3"})}>
+                        </div>
+                        <div className="vault-item c-1" data-aos="fade-up" data-aos-delay={200} key="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4">
+                            <video height={500} autoPlay loop muted onClick={() => handleAddClick({
+                                    link: "https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4", 
+                                    description: nekoboxDesc, fdlink: "https://foundation.app/@baecafe/cafe-s1/3"})}>
                                 <source src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/vault/nekobox.mp4" type="video/mp4"/>
                             </video>
-                        </GridListTile>
-                    </GridList>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

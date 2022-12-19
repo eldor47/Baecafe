@@ -1,138 +1,138 @@
 .vault-page{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 150px 0 0;
-
+    width: 100%;    
+    padding: 150px 0;
 }
-
-
-.white{
-    color: #FFFFFF;
-}
-
-.blue{
-    color: #3e8af6;
-}
-
-.descriptionHolder{
-    text-align: center;
-}
-
-
-
 .vault{
-    flex-basis: 40%;
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    height: 86vh;
-    margin-top: 7vh;
+    width: 400px;
+    position: fixed;
+    top:150px;
+    left: 4%;
 }
-
-.vault > h1 {
-    text-align: left;
-    font-family: 'Articulat.CF-V3-Heavy';
-    font-size: 65px;
-    width: 50%;
-}
-
-.vault > p {
-    font-family: 'Articulat.CF-V3-Bold';
-    text-align: right;
-    font-size: 18px;
-    width: 50%;
-}
-
-.vault-description{
-    width: 300px;
-    margin-top: 50px;
-    overflow: auto;
-    height: 83vh;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-
-.imageDesc{
-    justify-content: center;
-    flex-basis: 100%;
-    text-align: center;
-}
-
+    .vault > h1 {
+        text-align: left;
+        font-family: 'Articulat.CF-V3-Heavy';
+        font-size: 65px;
+    }
+    .blue{
+        color: #3e8af6;
+    }
+    .vault > p {
+        font-family: 'Articulat.CF-V3', sans-serif;
+        font-size: 18px;
+        line-height: 24px;
+        max-width: 300px;
+    }
 .vault-viewer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    overflow: auto;
-    align-items: start;
-    column-gap: 20px;
-    row-gap: 40px;
-    height: 83vh;
-    z-index: 1;
-    flex-basis: 59%;
-    margin-top: 10vh;
-    scroll-behavior: smooth;
-    margin-bottom: 20vh;
+    width: calc(90% - 400px);
+    margin: 0 3% 100px 0;
+    float: right;
+    display: block;
 }
+    .gridList {/*overflow:hidden!important;*/}
+        .vault-item{
+            float: left;
+            height: 30vw;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .vault-item.c-1{width: 33.333%;}
+        .vault-item.c-2{width: 66.666%;}
+        .vault-item.c-3{width: 99.999%;}
 
-.gridList {
-    width: 500;
-    height: 200;
-}
+            .vault-item img,.vault-item video{
+              object-fit: cover;
+              height: calc(30vw - 6px);
+              width: calc(100% - 6px);
+              margin:3px;
+            }
+
+            @media(max-width:1080px){
+                .vault-item{height: 50vw;}
+                .vault-item img,.vault-item video{height: calc(50vw - 6px);}
+            }
 
 .vault-modal{
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: max(50vw, 400px);
-    height: max(80vh, 800px);
+    width: min(calc(100% - 40px), 800px);
+    height: min(calc(100% - 40px), 650px);
     background-color: rgba(30, 33, 33,0.95);
     z-index: 2;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 30px;
+    overflow-y: scroll;
 }
+    .vault-modal::-webkit-scrollbar {
+        width: 14px;
+    }
+    .modal-main{
+        width: 100%;
+        height: max(calc(65% - 30px), 400px);
+    }
+    .descriptionHolder{
+        text-align: center;
+        padding: 20px 20px 0;
+        line-height: 20px;
+    }
+    p.imageDesc{
+        margin:10px;
+    }
+    a.fdn-circle{
+        margin:10px auto;
+       border: 1px solid #f0f1f3;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 40px;
+    }   
+    a.fdn-circle img{
+      width:20px;
+      height: auto;
+      color: #fff;
+    }
+    a.fdn-circle:hover img{
+        opacity: .5;
+        transition: opacity 500ms;
+        transition-timing-function: ease-in;
+    }
 
-.modal-main{
-    width: 100%;
-    height: 80%;
-}
 
-.vault-viewer::-webkit-scrollbar {
-    display: none;
-}
 
-.vault-image-item{
-    width: max(40vw, 300px);
-    height: max(40vh, 400px);
-}
-
-@media only screen and (max-width: 1080px) 
-{     
+@media (max-width: 1080px){     
     .vault {         
         width: 100%;
-        flex-basis: 100%;     
-        height: auto;
+        position: initial;
+        text-align: center;
     }      
     .vault-viewer {         
-        width: 100%;
-        flex-basis: 100%;
+        width: 96%;
+        margin: 80px 2% 20px;
     } 
-
-    
     .vault > h1 {
         text-align: center;
         font-size: 40px;
     }
-
     .vault > p {
         text-align: center;
+        display: inline-block;
+    }
+    .vault-modal{
+        transform: initial;
+        top:0;right:0;bottom:0;left:0;
+        width:calc(100% - 40px);
+        height: calc(100% - 40px);
+        border-radius: 0;
+    }
+    .modal-main{
+        height: 400px;
     }
 }
