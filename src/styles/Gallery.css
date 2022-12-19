@@ -92,6 +92,9 @@
         transition-timing-function: ease-out;
         z-index: 1;
     }
+    .border {
+        border: 1px solid red;
+    }
     .image-holder:nth-child(6n+1){margin-left: 0;}
     .image-holder:nth-child(6n){margin-right: 0;}
 
@@ -401,6 +404,11 @@ span.close-modal::after {
       width:20px;
       height: auto;
 }
+    .nft-os-link:hover img{
+        opacity: .5;
+        transition: opacity 500ms;
+        transition-timing-function: ease-in;
+    }
     .modal-right > p {
         text-align: left;
         width: 80%;
