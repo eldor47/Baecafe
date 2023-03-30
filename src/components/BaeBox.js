@@ -241,7 +241,7 @@ function BaeBox({ account }) {
 
 	  			<div className="bottom clearfix">
 		  			<div className="left">
-		  				<p>All tiers include a randomized chance for a voucher allowing you to claim a derivative version of one of your NFTs. The derivative will be made by Sawa, Ruri, or a special guest Bae Artist.</p>
+		  				<p>All tiers include the chance of containing: <br></br>1) a free S4 mint. 2) a voucher allowing you to claim a derivative version of one of your NFTs made by Sawa, Ruri, or a special guest Bae Artist.</p>
 		  			</div>
 		  			<div className="right">
 		  				<div className="holding-info">
