@@ -1,0 +1,645 @@
+.clearfix:after {
+    clear: both;
+    content: "";
+    display: table;
+}
+html,body{height: 100%;}
+.page.baebox{
+	width: 94%;
+	padding: 150px 2% 0 4%;
+	min-height: calc(100% - 100px);
+	max-width: 1800px;
+	margin: 0 auto;
+	background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/hana.png) no-repeat 10% 100%;
+	background-size: 400px;
+	font-family: 'Articulat CF';
+}
+.page.baebox > .left{
+	width: 300px;
+	float: left;
+	padding: 0 60px 0 0;
+}
+.page.baebox > .right{
+	width: calc(100% - 490px);
+	float: left;
+	padding: 60px 30px 30px;
+	background: #1E1E1E url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/baecafebg.png) no-repeat center center;
+	background-size: cover;
+	border: 5px solid #3E8AF6;
+}
+	.page.baebox h1{
+		font-weight: 900;
+		font-size: 65px;
+		line-height: 88px;
+		color: #FFFFFF;
+		text-transform: uppercase;
+	}
+	.page.baebox h1 span.blue{
+		color:#3E8AF6;
+	}
+	.page.baebox span.by{
+		font-size: 24px;
+		line-height: 33px;
+		text-align: right;
+	}
+	.baebox > .right .info{
+		float: left;
+		width: 22%;
+		box-sizing: border-box;
+		padding: 20px;
+	}
+	.baebox > .right .info h2{
+		font-weight: 400;
+		font-size: 36px;
+		line-height: 20px;
+		text-transform: uppercase;
+		position: relative;
+		padding: 0 0 40px;
+	}
+		.baebox > .right .info h2 span.i{
+			display: inline-block;
+			height: 20px;
+			width: 20px;
+			background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/circle-info-solid.png) no-repeat center center;
+			background-size: contain;
+			position: relative;
+			top:-5px;
+		}
+	.baebox > .right .info p{
+		font-size: 18px;
+		line-height: 36px;
+		font-weight: 300;
+	}
+	.baebox > .right .info p span{
+		font-weight: 700;
+	}
+	.baebox > .right .tier{
+		float: left;
+		width: calc(26% - 40px);	
+		box-sizing: border-box;
+		margin: 20px;
+
+	}
+	.baebox > .right .tier > h3{
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 33px;
+		background: #3E8AF6;
+		text-transform: uppercase;
+		padding: 20px;
+		position: relative;
+	}
+	.baebox > .right .tier h3 span{
+		font-weight: 300;
+	}
+	.baebox > .right .tier > h3:after{
+		content: '';
+		background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/cup.png) no-repeat left center;
+		background-size: contain;
+		position: absolute;
+		left: 185px;
+		top:50%;
+		margin-top: -8px;
+		height: 12px;
+	}
+	.baebox > .right .tier.one > h3:after{background-image: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/cup.png); width: 20px;}
+	.baebox > .right .tier.two > h3:after{background-image: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/2cup.png);width: 48px;}
+	.baebox > .right .tier.three > h3:after{background-image: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/3cup.png);width: 77px;}
+
+	.baebox > .right .tier .tier-content{
+		background: #1E1E1E;
+		border: 3px solid #3E8AF6;
+		padding: 20px 10px;
+		min-height: 410px;
+		position: relative;
+	}
+		.baebox > .right .tier .tier-content span.what-inside{
+			font-size: 14px;
+			font-weight: 300;
+			text-transform: uppercase;
+			padding: 0 0 16px 22px;
+			margin:7px 0 0 7px;
+			position: relative;
+			display: block;
+		}
+		.baebox > .right .tier .tier-content span.what-inside:before{
+			content: '';
+			background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/gold-star.png) no-repeat left center;
+			background-size: contain;
+			position: absolute;
+			left: 0px;top:-1px;
+			height: 15px;
+			width: 15px;
+		}
+
+		.baebox > .right .tier .tier-content .img-roller-container {
+			box-sizing: border-box;
+			width: 33.33%;
+			float: left;
+			padding: 0 7px;
+			margin-bottom: 10px;
+		}
+		.baebox > .right .tier .tier-content .img-roller-container .img-roller{
+			width: 100%;
+			background: #3E8AF6;
+			position: relative;
+			margin-bottom: 5px;
+		}
+		.baebox > .right .tier .tier-content .img-roller-container .img-roller:after{
+			content: '';
+			display: block;
+			padding-bottom: 100%;
+		}
+
+			.baebox > .right .tier .tier-content .img-roller-container .img-roller span.qmark{
+				position: absolute;
+				top:0;right:0;bottom:0;left:0;
+				font-weight: 700;
+				display: block;
+				background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/blue-q-50.png) no-repeat left center;
+				background-size: contain;
+			}
+			.baebox > .right .tier .tier-content .img-roller-container .img-roller span.qmark span.blue-cover-fade{
+				position: absolute;
+				top:0;right:0;bottom:0;left:0;
+				background: #3E8AF6;
+				opacity: .6;
+				transition: all .5s;
+			}
+		.baebox > .right .tier .tier-content .img-roller-container .item-title{
+			font-weight: 300;
+			font-size: 14px;
+			line-height: 20px;
+			text-align: center;
+			display: block;
+		}
+		.baebox > .right .tier .tier-content .img-roller-container .item-qty{
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 20px;
+			text-align: center;
+			display: block;
+		}
+
+	.baebox > .right .tier .tier-content .bae-bonus{
+		position: absolute;
+	    background: #323232 url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/baecoinbg.png) no-repeat center center;
+	    background-size: cover;
+	    width: calc(66.66% - 10px);
+		height: 120px;
+	    right: 0;
+	    top:192px;
+	}
+	.baebox > .right .tier .tier-content .bae-bonus h3{
+		font-size: 14px;
+		text-transform: uppercase;
+		line-height: 20px;
+		padding:10px 0 5px 35px;
+	}
+	.baebox > .right .tier .tier-content .bae-bonus h3:before{
+		content: '';
+		background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/baecoin.png) no-repeat left center;
+		background-size: contain;
+		position: absolute;
+		left: 10px;top:10px;
+		height: 20px;
+		width: 20px;
+	}
+	.baebox > .right .tier .tier-content .bae-bonus > span{
+		padding: 10px;
+	}
+	.baebox > .right .tier .tier-content .bae-bonus span.bae-q{
+		font-weight: 700;
+	}
+
+	.baebox > .right .tier .tier-content .price{
+		position: absolute;
+		bottom: 30px;
+		left: 17px;
+		font-size: 22px;
+		font-weight: 700;
+	}
+	.baebox > .right .tier .tier-content .acquire{
+		font-size: 22px;
+		position: absolute;
+		bottom: 20px;
+		right: 17px;
+		text-transform: uppercase;
+		text-decoration: none;
+		color: #fff;
+		background: #428af2;
+		padding: 14px 40px 10px 15px;
+		border: 1px solid #fff;
+		font-weight: 700;
+	}
+		.baebox > .right .tier .tier-content .acquire:after{
+			content: '';
+			background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/eth.png) no-repeat center center;
+			background-size: contain;
+			position: absolute;
+			right: 10px;
+			top:50%;
+			transform: translateY(-50%);
+			height: 23px;
+			width: 15px;
+		}
+
+	.baebox > .right .tier:hover{
+		box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.3);
+		transition:all .5s;
+	}
+		.baebox > .right .tier:hover .tier-content{
+			background: #222;
+		
+		}
+		.baebox > .right .tier:hover .img-roller.s1-roller{background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/s1-roller.gif) no-repeat center center;background-size: contain;transition:all 1s;}
+		.baebox > .right .tier:hover .img-roller.s2-roller{background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/s2-roller.gif) no-repeat center center;background-size: contain;}
+		.baebox > .right .tier:hover .img-roller.s3-roller{background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/s3-roller.gif) no-repeat center center;background-size: contain;}
+		.baebox > .right .tier:hover .img-roller.pixelbae-roller{background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/pixelbae-roller.gif) no-repeat center center;background-size: contain;}
+		.baebox > .right .tier:hover .tier-content .img-roller-container .img-roller span.qmark span.blue-cover-fade{opacity: 0;}
+
+		.baebox > .right .tier.one:hover > h3  {background: #a3b3cb; transition: all .5s;}
+		.baebox > .right .tier.one:hover > .tier-content  {border-color: #a3b3cb; transition: all .5s;}
+		.baebox > .right .tier.one .acquire:hover {background: #a3b3cb; box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.3); transition: all .5s;}
+
+		.baebox > .right .tier.two:hover > h3  {background: #abb382; transition: all .5s;}
+		.baebox > .right .tier.two:hover > .tier-content  {border-color: #abb382; transition: all .5s;}
+		.baebox > .right .tier.two .acquire:hover{background: #abb382; box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.3); transition: all .5s;}
+
+		.baebox > .right .tier.three:hover > h3{background: #9b81cf; transition: all .5s;}
+		.baebox > .right .tier.three:hover > .tier-content{border-color: #9b81cf; transition: all .5s;}
+		.baebox > .right .tier.three .acquire:hover{background: #9b81cf; box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.3); transition: all .5s;}
+
+
+	.page.baebox .bottom .left p,
+	.page.baebox .bottom p{
+		font-size: 16px;
+		font-weight: 300;
+	}
+
+	.baebox > .right .bottom{
+		clear:both;
+		box-sizing: border-box;
+		padding: 20px;
+	}
+	.baebox > .right .bottom .left{
+		box-sizing: border-box;
+		width: calc(50% - 45px);
+		padding: 10px 10px 10px 80px;
+		float: left;
+		margin-right: 20px;
+		background: #1E1E1E;
+		position: relative;
+	}
+	.baebox > .right .bottom .left:after{
+		content: '';
+		background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/gold-star.png) no-repeat left center;
+		background-size: contain;
+		position: absolute;
+		left: 33px;
+		top:50%;
+		margin-top: -10px;
+		height: 15px;
+		width: 15px;
+	}
+	.baebox > .right .bottom .right{
+		box-sizing: border-box;
+		width: calc(50% + 5px);
+		float: left;
+		margin-left: 20px;
+		background: #1E1E1E;
+	}
+	.baebox > .right .bottom .right .holding-info{
+			padding: 20px;
+		text-align: center;
+		    width: 50%;
+    float: left;
+    box-sizing: border-box;
+	}
+	.baebox > .right .bottom .right .holding-info span.you-have,
+	.baebox > .right .bottom .right .holding-info span.held-q{
+		text-transform: uppercase;
+		display:block;
+		font-size: 16px;
+	}
+	.baebox > .right .bottom .right .holding-info span.held-q{font-weight: 700}
+	.baebox > .right .bottom .right a.open-baebox{
+		background: #B8B57C;
+		border: 2px solid #FFFFFF;
+		font-weight: 700;
+		font-size: 30px;
+		text-decoration: none;
+		text-transform: uppercase;
+		color: #fff;
+		padding: 20px;
+		float:right;
+		max-width: 50%;
+    	box-sizing: border-box;
+	}
+	.baebox > .right .bottom .right a.open-baebox:hover{
+		background: #cdca9d; 
+		box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.3); 
+		transition: all .2s;
+	}
+
+@media(max-width:1860px){
+	.baebox > .right .info{width: 100%;}
+	.baebox > .right .tier{width: calc(33.3% - 40px);}
+	.baebox > .right .tier .tier-content .bae-bonus{top: 235px;}
+}
+@media(max-width:1610px){
+	.baebox > .right .bottom .right a.open-baebox{
+		font-size: 20px;
+		padding: 27px;
+	}
+	.page.baebox h1 span.blue{
+		display: block;
+	    margin: -30px 0 0;
+	}
+	.page.baebox > .left {
+		width: 150px;
+	}
+	.page.baebox > .right {
+		width: calc(100% - 320px);
+	}
+	.page.baebox{
+	    background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/hana.png) no-repeat 0% 100%;
+	    background-size: 400px;
+	}
+}
+@media(max-width:1380px){
+	.page.baebox{
+	    background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/hana.png) no-repeat 350px 10%;
+	    background-size: 200px;
+	    width: 94%;
+    	padding: 150px 3% 0 3%;
+	}
+	.page.baebox > .left {
+		width: 100%;
+    	margin: 0 0 50px 0;
+	}
+	.page.baebox > .right {
+		width: 100%;
+		box-sizing: border-box;
+	}
+
+	.page.baebox h1 span.blue {
+	    display: initial;
+	}
+
+}
+
+@media(max-width:1140px){
+	.page.baebox{
+	    background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/hana.png) no-repeat 100% 5%;
+	    background-size: 150px;
+	        width: 380px;
+	}
+	.page.baebox h1{font-size: 55px;}
+	.page.baebox > .right{
+	    max-width: 380px;
+	    margin: auto;
+	    float: none;
+	    clear: both;
+	}
+	.page.baebox > .left{
+	    max-width: 380px;
+	    float: none;
+	    margin: 0 auto 50px;
+	    padding: 0;
+	}
+
+	.baebox > .right .bottom .right {
+		width: 100%;
+		padding: 0;
+		margin:20px 0 0;
+
+	}
+	.baebox > .right .bottom .left {
+		width: 100%;
+		padding: 80px 18px 18px 18px;
+		margin:0;
+	    text-align: center;
+
+	}
+	.baebox > .right .tier {
+	    width: 300px;
+	    float: none;
+	    margin: 30px auto;
+        clear: both;
+	}
+	.baebox > .right .bottom .left:after{
+		top: 33px;
+   		left: 50%;
+	    margin-top: 0px;
+	    margin-left: -10px;
+	}
+	.baebox > .right .tier h3{clear:both;}
+	.baebox > .right .bottom{
+	    width: 300px;
+	    margin: 0 auto;
+	    padding: 0;
+	}
+	.baebox > .right .bottom .right .holding-info{
+		width: 100%;
+	}
+	.baebox > .right .bottom .right a.open-baebox{
+		max-width: 100%;
+		width: 100%;
+		text-align: center;
+	} 
+
+}
+
+
+
+	/*MODAL*/
+
+	.baebox-overlay{
+		position: fixed;
+		top:0;right: 0;bottom: 0;left: 0;
+		background: rgba(0,0,0,0.5);
+		backdrop-filter: blur(4px);
+		display: none;
+/*		display: block;*/
+		z-index: 10;
+	}
+
+	.baebox-modal{
+		width: 900px;
+		height: 600px;
+		background: #151616;
+		border: 3px solid #3E8AF6;
+		position: fixed;
+		top:50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		display: none;
+/*		display: block;*/
+		z-index: 10;
+
+	}
+		.baebox-modal .owned-boxes{
+			background: #1D2122;
+			width: 35%;
+			border-right: 1px solid #3E8AF6;
+			height: 100%;
+			float: left;
+		}
+		.baebox-modal .owned-boxes .list-of-boxes{
+			overflow-y: scroll;
+		}
+		.baebox-modal .owned-boxes .list-of-boxes::-webkit-scrollbar{
+   			display: none;
+		}
+		.baebox-modal .owned-boxes h3{
+			font-weight:300;
+			font-size: 32px;
+			padding: 30px 0px;
+			text-transform: uppercase;
+			text-align: center;
+			border-bottom: 1px solid #3E8AF6;
+		}
+		.baebox-modal .owned-boxes .baebox-single{
+			border-bottom: 1px solid #3E8AF6;
+			cursor: pointer;
+		}
+		.baebox-modal .owned-boxes .baebox-single:hover{
+			background: #2C3233;
+		}
+		.baebox-modal .owned-boxes .baebox-single.selected{
+			background: #3E8AF6;
+		}
+		.baebox-modal .owned-boxes .baebox-single span.baebox-title{
+			font-size: 16px;
+			text-transform: uppercase;
+			font-weight: 300;
+			padding: 20px;
+			display: inline-block;
+			position: relative;
+		}
+		.baebox-modal .owned-boxes .baebox-single span.baebox-title:after{
+			content: '';
+			background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/cup.png) no-repeat left center;
+			position: absolute;
+			left: calc(100% - 5px);
+			top:50%;
+			margin-top: -5px;
+			height: 10px;
+			width: 60px;
+		}
+		.baebox-modal .owned-boxes .baebox-single span.baebox-title.tier-cup-one:after{background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/cup.png) no-repeat left center;background-size:contain;}
+		.baebox-modal .owned-boxes .baebox-single span.baebox-title.tier-cup-two:after{background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/2cup.png) no-repeat left center;background-size:contain;}
+		.baebox-modal .owned-boxes .baebox-single span.baebox-title.tier-cup-three:after{background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/3cup.png) no-repeat left center;background-size:contain;}
+
+		.baebox-modal .owned-boxes .baebox-single .select-baebox{
+			float: right;
+			padding: 20px;
+		}
+
+		.baebox-modal .view-baebox-contents{
+			width: calc(65% - 1px);
+			float: left;
+			text-align: center;
+			position: relative;
+			height: 100%;
+			overflow-y: scroll;
+		}
+		.baebox-modal .view-baebox-contents::-webkit-scrollbar{
+   			display: none;
+		}
+		.baebox-modal .view-baebox-contents .closed-box-NFT{
+			background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/box-cup.png) no-repeat center center;
+			background-size: contain;
+			width: 300px;
+			height: 300px;
+			margin:50% auto 0;
+			transform: translateY(-50%);
+		}
+		.baebox-modal .view-baebox-contents a.burn-open-baebox{
+			font-size: 22px;
+		    position: absolute;
+		    bottom: 30px;
+		    left: 50%;
+			transform: translateX(-50%);
+		    text-transform: uppercase;
+		    text-decoration: none;
+		    color: #fff;
+		    background: #ef7652;
+		    padding: 14px 45px 10px 15px;
+		    border: 1px solid #fff;
+		    font-weight: 700;
+		    cursor: pointer;
+		}
+		.baebox-modal .view-baebox-contents a.burn-open-baebox:hover{
+		    background: #ff8662;
+		}
+		.baebox-modal .view-baebox-contents a.burn-open-baebox:after{
+			content: '';
+			background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/box-hexagon.png) no-repeat center center;
+			background-size: contain;
+			position: absolute;
+			right: 10px;
+			top:50%;
+			transform: translateY(-50%);
+			height: 24px;
+			width: 24px;
+		}
+
+		span.close-baebox-modal{
+			width: 20px;
+			height: 20px;
+			background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/ic-close-white2.png) no-repeat left center;
+			background-size: contain;
+			position: absolute;
+			top: 30px;
+			right: 30px;
+			cursor: pointer;
+			z-index: 11;
+		}
+
+@media(max-width:1080px){
+	.baebox-modal{
+		width: calc(100% - 40px);
+		height: calc(100% - 40px);
+	}
+
+}
+@media(max-width:800px){
+	.baebox-modal .owned-boxes{
+		width: 100%;
+		height: 229px;
+
+	    border-bottom: 3px solid #3E8AF6;
+	}
+	.baebox-modal .owned-boxes h3{
+		font-size: 24px;
+		padding: 25px 0px;
+	}
+	.baebox-modal .owned-boxes .list-of-boxes{
+		height: 150px;
+	}
+	.baebox-modal .view-baebox-contents{
+		position: absolute;
+		bottom: 0;
+		width: 100%;
+		height: calc(100% - 228px);
+	}
+	.baebox-modal .view-baebox-contents .closed-box-NFT{
+		margin:30px auto;
+		transform: translateY(0);
+	}
+}
+@media(max-width:480px){
+	.baebox-modal .view-baebox-contents a.burn-open-baebox{
+			font-size: 16px;		   
+		    padding: 10px 35px 10px 10px;
+		}
+		.baebox-modal .view-baebox-contents a.burn-open-baebox:after{
+			right: 10px;
+			top:calc(50% + 1px);
+			transform: translateY(-50%);
+			height: 16px;
+			width: 16px;
+		}
+}
