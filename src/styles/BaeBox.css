@@ -5,6 +5,7 @@
 }
 html,body{height: 100%;}
 .page.baebox{
+	display: block;
 	width: 94%;
 	padding: 150px 2% 0 4%;
 	min-height: calc(100% - 100px);
@@ -12,12 +13,19 @@ html,body{height: 100%;}
 	margin: 0 auto;
 	background: url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/hana.png) no-repeat 10% 100%;
 	background-size: 400px;
-	font-family: 'Articulat CF';
+	font-family: 'Articulat CF', sans-serif;
+}
+.page.baebox p,
+.page.baebox span{
+	font-family: 'Articulat CF', sans-serif;
+
 }
 .page.baebox > .left{
 	width: 300px;
 	float: left;
 	padding: 0 60px 0 0;
+	min-width: initial;
+	font-size: 24px;
 }
 .page.baebox > .right{
 	width: calc(100% - 490px);
@@ -26,6 +34,8 @@ html,body{height: 100%;}
 	background: #1E1E1E url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/baecafebg.png) no-repeat center center;
 	background-size: cover;
 	border: 5px solid #3E8AF6;
+	height: initial;
+	margin-bottom: 40px;
 }
 	.page.baebox h1{
 		font-weight: 900;
@@ -55,6 +65,8 @@ html,body{height: 100%;}
 		text-transform: uppercase;
 		position: relative;
 		padding: 0 0 40px;
+		font-family: 'Articulat CF', sans-serif;
+		
 	}
 		.baebox > .right .info h2 span.i{
 			display: inline-block;
@@ -603,7 +615,8 @@ html,body{height: 100%;}
 		width: calc(100% - 40px);
 		height: calc(100% - 40px);
 	}
-
+	.page.baebox .right{height: initial;}
+	.page.baebox .left{min-width: initial;}
 }
 @media(max-width:800px){
 	.baebox-modal .owned-boxes{

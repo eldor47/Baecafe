@@ -151,7 +151,7 @@ function BaeBox({ account }) {
 
 	  			<div className="info">
 	  				<h2>Acquire <span className="i"></span></h2>
-	  				<p>After you have acquired your BAEBOX, click <span>OPEN BAEBOX</span> to burn the box, reveal what’s inside, and claim the contents secured within it. <br></br>Good luck!</p>
+	  				<p>After you have acquired your BAEBOX, click <span>OPEN BAEBOX</span> to burn the box, reveal what’s inside, and claim the contents secured within it. <br></br><br></br>Good luck!</p>
 	  			</div>
 
 	  			<div className="tier one">
