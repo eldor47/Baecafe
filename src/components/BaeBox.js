@@ -46,7 +46,7 @@ function BaeBox({ account }) {
   const [boxHtml, setBoxHtml] = useState([])
 
   const [isBurning, setIsBurning] = useState(false);
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
 
   const [contracts, setContracts] = useState({
 	baeToken: "",
@@ -57,11 +57,11 @@ function BaeBox({ account }) {
   })
 
   const [rewards, setRewards] = useState({
-	s1: [1, 2],
-	s2: [8],
-	s3: [1],
-	sPixel: [5,6],
-	bae: 3345
+	s1: [],
+	s2: [],
+	s3: [],
+	sPixel: [],
+	bae: 0
 })
 
   const contractsPrd = {
@@ -212,6 +212,7 @@ function BaeBox({ account }) {
 	
 				console.log(r)
 				setRewards(r)
+				setIsBurning(false)
 				setIsOpened(true)
 				await getBalances()
 			}
