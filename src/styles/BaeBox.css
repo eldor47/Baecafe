@@ -228,7 +228,7 @@ html,body{height: 100%;}
 		position: absolute;
 		bottom: 30px;
 		left: 17px;
-		font-size: 22px;
+		font-size: 19px;
 		font-weight: 700;
 	}
 	.baebox > .right .tier .tier-content .acquire{
@@ -289,6 +289,10 @@ html,body{height: 100%;}
 		font-weight: 300;
 	}
 
+	.acquire:hover {
+		cursor: pointer;
+	}
+	
 	.baebox > .right .bottom{
 		clear:both;
 		box-sizing: border-box;
@@ -472,8 +476,7 @@ html,body{height: 100%;}
 		top:0;right: 0;bottom: 0;left: 0;
 		background: rgba(0,0,0,0.5);
 		backdrop-filter: blur(4px);
-		display: none;
-/*		display: block;*/
+		display: block;
 		z-index: 10;
 	}
 
@@ -486,8 +489,7 @@ html,body{height: 100%;}
 		top:50%;
 		left: 50%;
 		transform: translate(-50%,-50%);
-		display: none;
-/*		display: block;*/
+		display: block;
 		z-index: 10;
 
 	}
