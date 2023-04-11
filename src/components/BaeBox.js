@@ -2,7 +2,8 @@ import "../styles/BaeBox.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "./Loading";
-import pixelbaesabi from "../abi/pixelbaes.json";
+import baebox from "../abi/baebox.json";
+import OutsideClickHandler from 'react-outside-click-handler';
 
 import { ethers } from "ethers";
 
@@ -31,30 +32,81 @@ const signMessage = async ({ setError, message }) => {
 
 function BaeBox({ account }) {
 
-  const [isLoading, setIsLoading] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState('');
 
   const [contract, setContract] = useState(null);
 
   const [status, setStatus] = useState('');
-  const [price, setPrice] = useState(0.106);
+  const [prices, setPrices] = useState([0, 0, 0]);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const [balances, setBalances] = useState([0,0,0,0,0])
+  const [boxHtml, setBoxHtml] = useState([])
+
+  const [isBurning, setIsBurning] = useState(false);
+  const [isOpened, setIsOpened] = useState(false);
+
+  const [contracts, setContracts] = useState({
+	baeToken: "",
+	s1: "",
+	s2: "",
+	s3: "",
+	sPixel: ""
+  })
+
+  const [rewards, setRewards] = useState({
+	s1: [],
+	s2: [],
+	s3: [],
+	sPixel: [],
+	bae: 0
+})
+
+  const contractsPrd = {
+	baeToken: "",
+	s1: "",
+	s2: "",
+	s3: "",
+	sPixel: ""
+  }
+
+  const contractsTest = {
+	baeToken: "0x1fb7b8ad0C8368Db5463b34D5EA58778706D580e",
+	s1: "0xb209d45dC4CA1E370E6A6821fB62cD8F02e421C1",
+	s2: "0xb209d45dC4CA1E370E6A6821fB62cD8F02e421C1",
+	s3: "0xb209d45dC4CA1E370E6A6821fB62cD8F02e421C1",
+	sPixel: "0xb209d45dC4CA1E370E6A6821fB62cD8F02e421C1"
+  }
 
 
   useEffect(() => {
     if(contract !== null) {
         // Grab contract states
         setIsLoading(false)
+		loadData()
+
+		if(process.env.REACT_APP_NETWORK_ID === "5") {
+			setContracts(contractsTest)
+		} else {
+			setContracts(contractsPrd)
+		}
+
+		async function loadData() {
+			await getPrices()
+			await getBalances()
+		}
     }
   }, [contract])
 
-  // useEffect(() => {
-  //   if(mintInfo) {
-  //     mintPresale()
-  //   }
-  // }, [mintInfo])
+  useEffect(() => {
+	createBoxHtml()
+  }, [balances])
 
   useEffect(() => {
     connect()
+	console.log(account)
   }, [account])
 
   const connect = async () => {
@@ -75,8 +127,7 @@ function BaeBox({ account }) {
         provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
   
-        setContract(new ethers.Contract(process.env.REACT_APP_PIXEL_CONTRACT, pixelbaesabi, signer))
-        console.log('here')
+        setContract(new ethers.Contract(process.env.REACT_APP_BAE_BOX, baebox, signer))
         setError('')
       } catch (e) {
         console.log(e)
@@ -96,6 +147,173 @@ function BaeBox({ account }) {
     return chainId.chainId
   }
 
+  async function getPrices() {
+	const balance = await contract.showCostsPerTier();
+	var n = [0, 0, 0];
+	for(var i = 0; i < n.length; i++) {
+		n[i] = parseFloat(balance[i]) / Math.pow(10, 18)
+	}
+	setPrices(n)
+	return n;
+  }
+  async function getBalances() {
+	const balance0 = await contract.balanceOf(account, 0);
+	const balance1 = await contract.balanceOf(account, 1);
+	const balance2 = await contract.balanceOf(account, 2);
+	const balance3 = await contract.balanceOf(account, 3);
+	const balance4 = await contract.balanceOf(account, 4);
+
+	var balances = [parseFloat(balance0), parseFloat(balance1), parseFloat(balance2), parseFloat(balance3), parseFloat(balance4)]
+	setBalances(balances)
+  }
+
+  async function getMintedNum() {
+
+  }
+
+  async function openBox() {
+	console.log(contracts)
+	setIsBurning(true)
+	setError("")
+	try{
+		for(var a of boxHtml) {
+			if(a.selected) {
+				var openTx = await contract.openBox(a.tier - 1)
+				setStatus('Your box is being burned 🔥')
+				var receipt = await openTx.wait()
+	
+				console.log(receipt.logs)
+				var r = {
+					s1: [],
+					s2: [],
+					s3: [],
+					sPixel: [],
+					bae: 0
+				}
+	
+				for(var log of receipt.logs) {
+					if(log.address === contracts.s1) {
+						r.s1.push(parseInt(Number(log.topics[3])))
+					}
+					if(log.address === contracts.s2) {
+						r.s2.push(parseInt(Number(log.topics[3])))
+					}
+					if(log.address === contracts.s3) {
+						r.s3.push(parseInt(Number(log.topics[3])))
+					}
+					if(log.address === contracts.sPixel) {
+						r.sPixel.push(parseInt(Number(log.topics[3])))
+					}
+					if(log.address === contracts.baeToken) {
+						var removal = log.data.slice()
+						r.bae = h2d(removal) / Math.pow(10, 18)
+					}
+				}
+	
+				console.log(r)
+				setRewards(r)
+				setIsBurning(false)
+				setIsOpened(true)
+				await getBalances()
+			}
+		}
+	} catch(e) {
+		setIsBurning(false)
+		setError('Error opening. Please try again.')
+	}
+  }
+
+  function h2d(s) {
+
+    function add(x, y) {
+        var c = 0, r = [];
+        var x = x.split('').map(Number);
+        var y = y.split('').map(Number);
+        while(x.length || y.length) {
+            var s = (x.pop() || 0) + (y.pop() || 0) + c;
+            r.unshift(s < 10 ? s : s - 10); 
+            c = s < 10 ? 0 : 1;
+        }
+        if(c) r.unshift(c);
+        return r.join('');
+    }
+
+    var dec = '0';
+    s.split('').forEach(function(chr) {
+        var n = parseInt(chr, 16);
+        for(var t = 8; t; t >>= 1) {
+            dec = add(dec, dec);
+            if(n & t) dec = add(dec, '1');
+        }
+    });
+    return dec;
+}
+
+  async function mintBox(_tier) {
+
+	console.log('here')
+	console.log(prices[_tier])
+
+
+	try {
+        var mintTx = await contract.mintBox(_tier, { value: ethers.utils.parseEther(prices[_tier].toString()) })
+        setStatus('Your tokens are on the way!')
+        await mintTx.wait()
+        setStatus('Tokens successfully minted.') 
+		await getBalances()
+      } catch (e) {
+        setStatus('')
+        if(e.message.includes('estimate gas')){
+          setStatus('')
+          setError('Cannot estimate gas!')
+        }
+        if(e.message.includes('insufficient funds')){
+          setStatus('')
+          setError('Insufficient funds in your wallet!')
+        }
+      }
+  }
+
+  function createBoxHtml() {
+	var b = []
+	for(var i = 0; i < 3; i++) {
+		for(var j = 0; j < balances[i]; j++) {
+			var cssVar = ""
+			if(i === 0) {
+				cssVar = "one"
+			} else if(i === 1) {
+				cssVar = "two"
+			} else {
+				cssVar = "three"
+			}
+			b.push(
+			{
+				tier: i+1,
+				cssVar,
+				selected: false,
+				id: i+j
+			}
+			)
+		}
+	}
+
+	setBoxHtml(b)
+  }
+
+  function selectBox(a) {
+	setError("")
+	setIsOpened(false)
+	var newBoxHtml = [...boxHtml]
+	for(var b of boxHtml) {
+		if(a.id === b.id) {
+			b.selected = true
+		} else {
+			b.selected = false
+		}
+	}
+	setBoxHtml(newBoxHtml)
+  }
+
   return (
     <div>
       {isLoading ? (
@@ -106,40 +324,59 @@ function BaeBox({ account }) {
         </div>
       ) : (
         <div>
-          <div className="baebox-overlay"></div>
-	  	<div className="baebox-modal clearfix">
+		  {modalOpen ?
+		  <>		  <div className="baebox-overlay"></div>
+		  <OutsideClickHandler onOutsideClick={() => { setModalOpen(false) }}>
+		  <div className="baebox-modal clearfix">
 	  		<span className="close-baebox-modal"></span>
 	  		<div className="owned-boxes clearfix">
 	  			<h3>Open Baebox</h3>
 	  			<div className="list-of-boxes clearfix">
-	  				<div className="baebox-single">
-		  				<span className="baebox-title tier-cup-one">Baebox #123</span>
-		  				<span className="select-baebox">select</span>
-		  			</div>
-		  			<div className="baebox-single">
-		  				<span className="baebox-title tier-cup-one">Baebox #124</span>
-		  				<span className="select-baebox">select</span>
-		  			</div>
-		  			<div className="baebox-single">
-		  				<span className="baebox-title tier-cup-two">Baebox #125</span>
-		  				<span className="select-baebox">select</span>
-		  			</div>
-		  			<div className="baebox-single selected">
-		  				<span className="baebox-title tier-cup-one">Baebox #129</span>
-		  				<span className="select-baebox">selected</span>
-		  			</div>
-		  			<div className="baebox-single">
-		  				<span className="baebox-title tier-cup-three">Baebox #1509</span>
-		  				<span className="select-baebox">select</span>
-		  			</div>
+					{boxHtml.map(a => {
+						return <div key={a.id} onClick={() => selectBox(a)} className={"baebox-single" + (a.selected ? " selected" : "")}>
+							<span className={"baebox-title tier-cup-" + a.cssVar}>Baebox Tier {a.tier}</span>
+							<span className="select-baebox">select</span>
+						</div>
+					})}
 	  			</div>
 	  			
 	  		</div>
 	  		<div className="view-baebox-contents">
-	  			<div className="closed-box-NFT"></div>
-	  			<a className="burn-open-baebox">Burn to Open</a>
+	  			<div className="closed-box-NFT">
+					{boxHtml.map(a => {
+						if(a.selected && !isBurning && !isOpened) {
+							return <img width="300" src={"https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/tier" + a.tier + ".gif"}></img>
+						}
+					})}
+					{isBurning ? <img width="200" src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/small.gif"></img> :
+						<></>
+					}
+					{isOpened ?
+					<div>
+						{rewards.s1.map((r, index) => {
+							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s1/" + r + ".png"}></img>
+						})}
+						{rewards.s2.map((r, index) => {
+							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s2/" + r + ".png"}></img>
+						})}
+						{rewards.s3.map((r, index) => {
+							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s3/" + r + ".png"}></img>
+						})}
+						{rewards.sPixel.map((r, index) => {
+							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s2.5/" + r + ".gif"}></img>
+						})}
+						<p>{rewards.bae} $BAE Received</p>
+					</div>
+					 : <></>
+					}
+				  	<div className="error">{error}</div>
+				</div>
+	  			<a className="burn-open-baebox" onClick={() => openBox()}>Burn to Open</a>
 	  		</div>
-	  	</div>
+	  		</div>
+		  </OutsideClickHandler>
+		
+		</> : <></>}
 	  	<div className="page baebox clearfix">
 
 	  		<div className="left clearfix">
@@ -172,8 +409,8 @@ function BaeBox({ account }) {
 		  					<h3>$BAE Bonus</h3>
 		  					<span>Up to <span className="bae-q">1000</span> $BAE</span>
 		  				</div>
-		  				<span className="price">.05 ETH</span>
-		  				<a className="acquire" href="#">Acquire</a>
+		  				<span className="price">{prices[0]} ETH</span>
+		  				<button className="acquire" onClick={() => mintBox(0)}>Acquire</button>
 	  				</div>
 	  				
 	  			</div>
@@ -201,8 +438,8 @@ function BaeBox({ account }) {
 		  					<h3>$BAE Bonus</h3>
 		  					<span>Up to <span className="bae-q">3000</span> $BAE</span>
 		  				</div>
-		  				<span className="price">.05 ETH</span>
-		  				<a className="acquire" href="#">Acquire</a>
+		  				<span className="price">{prices[1]} ETH</span>
+		  				<a className="acquire" onClick={() => mintBox(1)}>Acquire</a>
 		  			</div>
 	  			</div>
 
@@ -213,7 +450,7 @@ function BaeBox({ account }) {
 		  				<div className="img-roller-container">
 		  					<div className="img-roller s1-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
 		  					<span className="item-title">S1</span>	
-		  					<span className="item-qty">x1</span>	
+		  					<span className="item-qty">x2</span>	
 		  				</div>
 		  				<div className="img-roller-container">
 		  					<div className="img-roller s2-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
@@ -228,14 +465,14 @@ function BaeBox({ account }) {
 		  				<div className="img-roller-container">
 		  					<div className="img-roller pixelbae-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
 		  					<span className="item-title">pixelbae</span>	
-		  					<span className="item-qty">x5</span>	
+		  					<span className="item-qty">x2</span>	
 		  				</div>
 		  				<div className="bae-bonus">
 		  					<h3>$BAE Bonus</h3>
 		  					<span>Up to <span className="bae-q">5000</span> $BAE</span>
 		  				</div>
-		  				<span className="price">.05 ETH</span>
-		  				<a className="acquire" href="#">Acquire</a>
+		  				<span className="price">{prices[2]} ETH</span>
+		  				<a className="acquire" onClick={() => mintBox(2)}>Acquire</a>
 		  			</div>
 	  			</div>
 
@@ -246,10 +483,11 @@ function BaeBox({ account }) {
 		  			<div className="right">
 		  				<div className="holding-info">
 			  				<span className="you-have">You currently have:</span>
-			  				<span className="held-q">3 BaeBoxes</span>
+			  				<span className="held-q">{balances[0] + balances[1] + balances[2]} Bae Boxes</span>
 		  				</div>
-		  				<a className="open-baebox" href="#">Open BaeBox</a>
-		  			</div>	
+		  				<a className="open-baebox" onClick={() => setModalOpen(true)}>Open BaeBox</a>
+		  			</div>
+					<div className="error">{error}</div>
 		  		</div>
 	  		</div>
 
