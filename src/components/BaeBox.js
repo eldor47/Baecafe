@@ -45,7 +45,7 @@ function BaeBox({ account }) {
   const [balances, setBalances] = useState([0,0,0,0,0])
   const [boxHtml, setBoxHtml] = useState([])
 
-  const [isBurning, setIsBurning] = useState(false);
+  const [isBurning, setIsBurning] = useState(true);
   const [isOpened, setIsOpened] = useState(false);
 
   const [contracts, setContracts] = useState({
@@ -57,11 +57,11 @@ function BaeBox({ account }) {
   })
 
   const [rewards, setRewards] = useState({
-	s1: [],
-	s2: [],
-	s3: [],
-	sPixel: [],
-	bae: 0
+	s1: [5,4],
+	s2: [5],
+	s3: [5],
+	sPixel: [2,8],
+	bae: 5600
 })
 
   const contractsPrd = {
@@ -342,36 +342,48 @@ function BaeBox({ account }) {
 	  			
 	  		</div>
 	  		<div className="view-baebox-contents">
-	  			<div className="closed-box-NFT">
+
 					{boxHtml.map(a => {
 						if(a.selected && !isBurning && !isOpened) {
-							return <img width="300" src={"https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/tier" + a.tier + ".gif"}></img>
+							return <div className="closed-box-NFT" style={{background:"url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/tier" + a.tier + ".gif)", backgroundSize: "contain"}}></div>					
 						}
 					})}
-					{isBurning ? <img width="200" src="https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/small.gif"></img> :
+					{isBurning ? <div className="burning-box-NFT" style={{background: "url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/small.gif) bottom center", backgroundSize: "cover"}}></div> :
 						<></>
 					}
 					{isOpened ?
-					<div>
+					<div className="opened-box-NFT">
+
+						<h3>BOX CONTENTS</h3>
+						<p className="opened-bae"><span>{rewards.bae}</span> $BAE Received</p>
+
 						{rewards.s1.map((r, index) => {
-							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s1/" + r + ".png"}></img>
+							return <img key={index+r}className='stake-image-item' src={"https://dx8cklxaufs1v.cloudfront.net/collections/s1/" + r + ".png"}></img>
 						})}
 						{rewards.s2.map((r, index) => {
-							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s2/" + r + ".png"}></img>
+							return <img key={index+r}className='stake-image-item' src={"https://dx8cklxaufs1v.cloudfront.net/collections/s2/" + r + ".png"}></img>
 						})}
 						{rewards.s3.map((r, index) => {
-							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s3/" + r + ".png"}></img>
+							return <img key={index+r}className='stake-image-item' src={"https://dx8cklxaufs1v.cloudfront.net/collections/s3/" + r + ".png"}></img>
 						})}
 						{rewards.sPixel.map((r, index) => {
-							return <img key={index+r}className='stake-image-item'style={{padding:"2px"}} src={"https://dx8cklxaufs1v.cloudfront.net/collections/s2.5/" + r + ".gif"}></img>
+							return <img key={index+r}className='stake-image-item' src={"https://dx8cklxaufs1v.cloudfront.net/collections/s2.5/" + r + ".gif"}></img>
 						})}
-						<p>{rewards.bae} $BAE Received</p>
 					</div>
 					 : <></>
 					}
 				  	<div className="error">{error}</div>
-				</div>
-	  			<a className="burn-open-baebox" onClick={() => openBox()}>Burn to Open</a>
+				{//if isSelected
+					<a className="burn-open-baebox" onClick={() => openBox()}>Burn to Open</a>
+				}
+				{//if isBurning
+					<></>
+				}
+					{//if isOpened
+					<a className="go-to-opensea"  href="#">Go to OpenSea</a>
+				}
+
+
 	  		</div>
 	  		</div>
 		  </OutsideClickHandler>
