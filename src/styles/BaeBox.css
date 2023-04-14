@@ -226,9 +226,17 @@ html,body{height: 100%;}
 
 	.baebox > .right .tier .tier-content .price{
 		position: absolute;
-		bottom: 30px;
+		bottom: 35px;
 		left: 17px;
 		font-size: 19px;
+		font-weight: 700;
+	}
+
+	.minted {
+		position: absolute;
+		bottom: 20px;
+		left: 17px;
+		font-size: 14px;
 		font-weight: 700;
 	}
 	.baebox > .right .tier .tier-content .acquire{

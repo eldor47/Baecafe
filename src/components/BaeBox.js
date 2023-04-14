@@ -45,8 +45,13 @@ function BaeBox({ account }) {
   const [balances, setBalances] = useState([0,0,0,0,0])
   const [boxHtml, setBoxHtml] = useState([])
 
-  const [isBurning, setIsBurning] = useState(true);
+  const [isBurning, setIsBurning] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
+
+  const [isSelected, setIsSelected] = useState(false);
+
+  const [numMinted, setNumMinted] = useState([0,0,0])
+  const [maxMints, setMaxMints] = useState([0,0,0])
 
   const [contracts, setContracts] = useState({
 	baeToken: "",
@@ -57,19 +62,19 @@ function BaeBox({ account }) {
   })
 
   const [rewards, setRewards] = useState({
-	s1: [5,4],
-	s2: [5],
-	s3: [5],
-	sPixel: [2,8],
-	bae: 5600
+	s1: [],
+	s2: [],
+	s3: [],
+	sPixel: [],
+	bae: 0
 })
 
   const contractsPrd = {
-	baeToken: "",
-	s1: "",
-	s2: "",
-	s3: "",
-	sPixel: ""
+	baeToken: "0xc6c3622723f06b3e98d351b2be2e851d23eeceaf",
+	s1: "0x951e4297561e9abef6e5b4b2f78696ed8c552fd0",
+	s2: "0x71663f5fb424e2e9e2c82d86f207d50c8ba481c6",
+	s3: "0x192dc10a4b3a92b68831ec73e996c6babe76fbf7",
+	sPixel: "0x1fb7b8ad0C8368Db5463b34D5EA58778706D580e"
   }
 
   const contractsTest = {
@@ -96,6 +101,7 @@ function BaeBox({ account }) {
 		async function loadData() {
 			await getPrices()
 			await getBalances()
+			await getMintedNum()
 		}
     }
   }, [contract])
@@ -168,7 +174,11 @@ function BaeBox({ account }) {
   }
 
   async function getMintedNum() {
+	const amountMinted = await contract.showTiersMinted();
+	const maxMintsAllowed = await contract.showMaxPerTier();
 
+	setNumMinted([parseFloat(amountMinted[0]), parseFloat(amountMinted[1]), parseFloat(amountMinted[2])])
+	setMaxMints([parseFloat(maxMintsAllowed[0]), parseFloat(maxMintsAllowed[1]), parseFloat(maxMintsAllowed[2])])
   }
 
   async function openBox() {
@@ -214,6 +224,7 @@ function BaeBox({ account }) {
 				setRewards(r)
 				setIsBurning(false)
 				setIsOpened(true)
+				setIsSelected(false)
 				await getBalances()
 			}
 		}
@@ -265,7 +276,7 @@ function BaeBox({ account }) {
         setStatus('')
         if(e.message.includes('estimate gas')){
           setStatus('')
-          setError('Cannot estimate gas!')
+          setError('Minting is paused!')
         }
         if(e.message.includes('insufficient funds')){
           setStatus('')
@@ -312,6 +323,7 @@ function BaeBox({ account }) {
 		}
 	}
 	setBoxHtml(newBoxHtml)
+	setIsSelected(true)
   }
 
   return (
@@ -345,7 +357,7 @@ function BaeBox({ account }) {
 
 					{boxHtml.map(a => {
 						if(a.selected && !isBurning && !isOpened) {
-							return <div className="closed-box-NFT" style={{background:"url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/tier" + a.tier + ".gif)", backgroundSize: "contain"}}></div>					
+							return <div key={a.id} className="closed-box-NFT" style={{background:"url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/tier" + a.tier + ".gif)", backgroundSize: "contain"}}></div>					
 						}
 					})}
 					{isBurning ? <div className="burning-box-NFT" style={{background: "url(https://dx8cklxaufs1v.cloudfront.net/baecafeweb/image/baebox/small.gif) bottom center", backgroundSize: "cover"}}></div> :
@@ -373,14 +385,16 @@ function BaeBox({ account }) {
 					 : <></>
 					}
 				  	<div className="error">{error}</div>
-				{//if isSelected
-					<a className="burn-open-baebox" onClick={() => openBox()}>Burn to Open</a>
+				{isSelected && !isBurning ? 
+					<a className="burn-open-baebox" onClick={() => openBox()}>Burn to Open</a> : <></>
 				}
 				{//if isBurning
-					<></>
+					isBurning ?
+					<></> : <></>
 				}
-					{//if isOpened
-					<a className="go-to-opensea"  href="#">Go to OpenSea</a>
+				{
+					isOpened ?
+					<a className="go-to-opensea" target="_blank" href={"https://opensea.io/" + account}>Go to OpenSea</a> : <></>
 				}
 
 
@@ -410,7 +424,7 @@ function BaeBox({ account }) {
 		  				<div className="img-roller-container">
 		  					<div className="img-roller s3-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
 		  					<span className="item-title">S3</span>	
-		  					<span className="item-qty">x1</span>	
+		  					<span className="item-qty">x2</span>	
 		  				</div>
 		  				<div className="img-roller-container">
 		  					<div className="img-roller pixelbae-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
@@ -422,7 +436,8 @@ function BaeBox({ account }) {
 		  					<span>Up to <span className="bae-q">1000</span> $BAE</span>
 		  				</div>
 		  				<span className="price">{prices[0]} ETH</span>
-		  				<button className="acquire" onClick={() => mintBox(0)}>Acquire</button>
+						<span className="minted">{numMinted[0]} / {maxMints[0]} minted</span>
+						<a className="acquire" onClick={(numMinted[0] / maxMints[0] !== 1) ? () => mintBox(0) : ()=>{}}>Acquire</a>
 	  				</div>
 	  				
 	  			</div>
@@ -431,27 +446,33 @@ function BaeBox({ account }) {
 	  				<h3>Tier 2 <span>BaeBox</span></h3>
 	  				<div className="tier-content clearfix">
 		  				<span className="what-inside">What's inside:</span>
-		  				<div className="img-roller-container">
+		  				{/* <div className="img-roller-container">
 		  					<div className="img-roller s1-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
 		  					<span className="item-title">S1</span>	
 		  					<span className="item-qty">x1</span>	
-		  				</div>
+		  				</div> */}
 		  				<div className="img-roller-container">
 		  					<div className="img-roller s2-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
 		  					<span className="item-title">S2</span>	
-		  					<span className="item-qty">x1</span>	
+		  					<span className="item-qty">x2</span>	
 		  				</div>
 		  				<div className="img-roller-container">
 		  					<div className="img-roller pixelbae-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
 		  					<span className="item-title">pixelbae</span>	
 		  					<span className="item-qty">x3</span>	
 		  				</div>
+						<div className="img-roller-container">
+		  					<div className="img-roller s3-roller"><span className="qmark"><span className="blue-cover-fade"></span></span></div>
+		  					<span className="item-title">S3</span>	
+		  					<span className="item-qty">x1</span>	
+		  				</div>
 		  				<div className="bae-bonus">
 		  					<h3>$BAE Bonus</h3>
 		  					<span>Up to <span className="bae-q">3000</span> $BAE</span>
 		  				</div>
 		  				<span className="price">{prices[1]} ETH</span>
-		  				<a className="acquire" onClick={() => mintBox(1)}>Acquire</a>
+						  <span className="minted">{numMinted[1]} / {maxMints[1]} minted</span>
+		  				<a className="acquire" onClick={(numMinted[1] / maxMints[1] !== 1) ? () => mintBox(1) : ()=>{}}>Acquire</a>
 		  			</div>
 	  			</div>
 
@@ -484,7 +505,8 @@ function BaeBox({ account }) {
 		  					<span>Up to <span className="bae-q">5000</span> $BAE</span>
 		  				</div>
 		  				<span className="price">{prices[2]} ETH</span>
-		  				<a className="acquire" onClick={() => mintBox(2)}>Acquire</a>
+						  <span className="minted">{numMinted[2]} / {maxMints[2]} minted</span>
+		  				<a className="acquire" onClick={(numMinted[2] / maxMints[2] !== 1) ? () => mintBox(2) : ()=>{}}>Acquire</a>
 		  			</div>
 	  			</div>
 
@@ -497,7 +519,7 @@ function BaeBox({ account }) {
 			  				<span className="you-have">You currently have:</span>
 			  				<span className="held-q">{balances[0] + balances[1] + balances[2]} Bae Boxes</span>
 		  				</div>
-		  				<a className="open-baebox" onClick={() => setModalOpen(true)}>Open BaeBox</a>
+		  				<a className="open-baebox" onClick={(balances[0] + balances[1] + balances[2] > 0) ? () => setModalOpen(true) : () => {}}>Open BaeBox</a>
 		  			</div>
 					<div className="error">{error}</div>
 		  		</div>
