@@ -170,6 +170,7 @@ function BaeBox({ account }) {
 	const balance4 = await contract.balanceOf(account, 4);
 
 	var balances = [parseFloat(balance0), parseFloat(balance1), parseFloat(balance2), parseFloat(balance3), parseFloat(balance4)]
+	console.log(balances)
 	setBalances(balances)
   }
 
@@ -202,19 +203,19 @@ function BaeBox({ account }) {
 				}
 	
 				for(var log of receipt.logs) {
-					if(log.address === contracts.s1) {
+					if(log.address.toLowerCase() === contracts.s1.toLowerCase()) {
 						r.s1.push(parseInt(Number(log.topics[3])))
 					}
-					if(log.address === contracts.s2) {
+					if(log.address.toLowerCase() === contracts.s2.toLowerCase()) {
 						r.s2.push(parseInt(Number(log.topics[3])))
 					}
-					if(log.address === contracts.s3) {
+					if(log.address.toLowerCase() === contracts.s3.toLowerCase()) {
 						r.s3.push(parseInt(Number(log.topics[3])))
 					}
-					if(log.address === contracts.sPixel) {
+					if(log.address.toLowerCase() === contracts.sPixel.toLowerCase()) {
 						r.sPixel.push(parseInt(Number(log.topics[3])))
 					}
-					if(log.address === contracts.baeToken) {
+					if(log.address.toLowerCase() === contracts.baeToken.toLowerCase()) {
 						var removal = log.data.slice()
 						r.bae = h2d(removal) / Math.pow(10, 18)
 					}
