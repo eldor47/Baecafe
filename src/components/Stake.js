@@ -319,9 +319,9 @@ function Stake({account, contracts}) {
 
       {isLoading ? (
         <div className="loadingView">
-          <h1>Welcome to <span className="pink">Staking</span></h1>
-          <p>Please verify wallet to continue.</p>
-          <button className="mint-button" onClick={handleSign}>Verify Wallet</button>
+          <h1>Staking is <span className="pink">Paused</span></h1>
+          <p>We are working on a new solution that is more sustainable</p>
+          {/* <button className="mint-button" onClick={handleSign}>Verify Wallet</button> */}
         </div> 
       ) : (
         <div className='stake'>

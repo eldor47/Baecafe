@@ -12,6 +12,7 @@ import { useState, useEffect, useRef } from "react";
 import React from 'react';
 import Marketplace from "./components/Marketplace";
 import Mint from "./components/Mint";
+import BaeBox from "./components/BaeBox";
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
           <Route path="/marketplace" element={<Marketplace account={account} contracts={contracts}/>} />
           <Route path="/vault" element={<Vault />} />
           <Route path="/mint" element={<Mint account={account}/>} />
+          <Route path="/baebox" element={<BaeBox account={account}/>} />
         </Routes>
     </Router>
   );
