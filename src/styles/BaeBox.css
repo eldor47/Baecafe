@@ -562,7 +562,7 @@ html,body{height: 100%;}
 		}
 
 		.baebox-modal .view-baebox-contents{
-			width: calc(65% - 1px);
+			width: calc(65% - 2px);
 			float: left;
 			text-align: center;
 			position: relative;
