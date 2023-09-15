@@ -43,6 +43,7 @@ function App() {
       })
     }
   }, []);
+  
   return (
     <Router>
       <Header connect={connect} account={account} />

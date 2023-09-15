@@ -258,7 +258,7 @@ function Gallery() {
               key={nft.name} onClick={() => handleAddClick(nft)}>
                 <img 
                   className={imageLoading ? 'image-item image-loading' : 'image-item'}
-                  src={imageLoading ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdjcHFx+Q8AA2gBzINF/IQAAAAASUVORK5CYII=' : nft.external_url}
+                  src={imageLoading ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8Xw8AAoMBgDTD2qgAAAAASUVORK5CYII=' : nft.external_url}
                   onLoad={() => setImageLoading(false)}>
                 </img>
                 <p className='image-text'>{nft.name}</p>

@@ -5,7 +5,7 @@ function Timer() {
 
   const calculateTimeLeft = () => {
     var currDate = new Date()
-    var endDate = new Date(Date.UTC(2022, 9, 27, 14, 0, 0))
+    var endDate = new Date(Date.UTC(2023, 8, 23, 18, 0, 0))
     const difference = endDate - currDate;
     let timeLeft = {};
 
@@ -38,23 +38,18 @@ function Timer() {
     }
 
     timerComponents.push(
-      <div className='time-top' key={interval}>
-        {value}
-        <div className='time-bottom'>
+      <li key={interval}>
+        <span className='big-number'>{value}</span>
+        <span className='small-text'>
           {interval}
-        </div>
-      </div>
+        </span>
+      </li>
     );
   });
   return (
-    <div>
-      <div className='time-holder'>
-        {timerComponents.length ? timerComponents : <></>}
-      </div>
-      {timerComponents.length ? (
-        <h1 className="presale">PRESALE <span className="pink">BEGINS</span></h1>
-      ) : <></>}
-    </div>
+    <ul>
+      {timerComponents.length ? timerComponents : <></>}
+    </ul>
   );
 }
 
