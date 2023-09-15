@@ -397,7 +397,7 @@ function Mint({ account }) {
               <div class="countdown">
                 <Timer></Timer>	
               </div>
-              <button class="connect">connect</button>
+              <button class="connect" disabled>connect</button>
             </div>
             {/* <div class="state-mint">
               <span class="choose">Choose how many chibaes<br></br> you want and click mint!</span>
