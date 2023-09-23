@@ -267,7 +267,7 @@
 		font-size: 24px;
 		font-weight: 600;
 	}
-	.karu-mint-box form.mint input[type="number"]{
+	.karu-mint-box .mint input[type="number"]{
 		font-family: 'Quicksand', sans-serif;
 		font-size: 42px;
 		font-weight: 600;
@@ -280,7 +280,7 @@
 		-webkit-appearance: none;
 
 	}
-	.karu-mint-box form.mint input::placeholder{
+	.karu-mint-box .mint input::placeholder{
 		color:#D6DCE3;
 	}
 	.karu-mint-box button.mint{
